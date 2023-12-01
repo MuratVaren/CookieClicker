@@ -24,5 +24,10 @@ namespace CookieClicker
         {
             InitializeComponent();
         }
+
+        private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
