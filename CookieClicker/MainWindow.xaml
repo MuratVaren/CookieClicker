@@ -9,6 +9,7 @@
     <Window.Background>
         <ImageBrush ImageSource="Assets/Images/Background.png"/>
     </Window.Background>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,5 +22,18 @@
             <Label Name="LblCookieCount" Content="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"/>
             <Image Name="ImgCookie" Source="Assets/Images/Cookie.png" MouseDown="ImgCookie_MouseDown"/>
         </StackPanel>
+            
+        <!-- COl 1 -->
+        
+        <!-- COL 2 -->
+        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+            <Button Name="BtnPointer" Content="pointer" IsEnabled="False"/>
+            <Button Name="BtnGranny" Content="granny" IsEnabled="False"/>
+            <Button Name="BtnFarm" Content="farm" IsEnabled="False"/>
+            <Button Name="BtnMine" Content="mine" IsEnabled="False"/>
+        </StackPanel>
+            
+        
+            
     </Grid>
 </Window>
