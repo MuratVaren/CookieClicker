@@ -38,7 +38,8 @@ namespace CookieClicker
         }
         private void UpdateCookieDisplay()
         {
-            LblCookieCount.Content = Math.Floor(cookieCounter);
+            LblCookieCount.Content = $"{Math.Floor(cookieCounter)} Cookies";
+            this.Title = $"{Math.Floor(cookieCounter)} Cookies";
         }
         public void ClickAnimation()
         {
