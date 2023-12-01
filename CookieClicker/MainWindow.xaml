@@ -23,16 +23,111 @@
         </StackPanel>
             
         <!-- COl 1 -->
-        
+
         <!-- COL 2 -->
-        <StackPanel Grid.Column="2" VerticalAlignment="Center">
-            <Button Name="BtnPointer" Content="pointer" IsEnabled="False"/>
-            <Button Name="BtnGranny" Content="granny" IsEnabled="False"/>
-            <Button Name="BtnFarm" Content="farm" IsEnabled="False"/>
-            <Button Name="BtnMine" Content="mine" IsEnabled="False"/>
-        </StackPanel>
-            
-        
-            
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Border Grid.Row="1" Grid.RowSpan="4" Background="LightGray">
+            </Border>
+            <Button Name="BtnPointer" Grid.Row="1" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    0.1 Cookies per seconden
+                </Button.ToolTip>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="assets/images/Pointer.png"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Label Content="Pointer" Foreground="black" FontSize="16"/>
+                        <Label Name="LblPointerPrice" Content="15" FontWeight="Bold"/>
+                    </StackPanel>
+                    <Label Name="LblPointerCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" FontSize="24"/>
+                </Grid>
+            </Button>
+
+            <Button Name="BtnGranny" Grid.Row="2" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    1 Cookie per seconden
+                </Button.ToolTip>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="assets/images/Granny.png"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Label Content="Granny" Foreground="black" FontSize="16"/>
+                        <Label Name="LblGrannyPrice" Content="100" FontWeight="Bold"/>
+                    </StackPanel>
+                    <Label Name="LblGrannyCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" FontSize="24"/>
+                </Grid>
+            </Button>
+
+            <Button Name="BtnFarm" Grid.Row="3" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    8 Cookies per seconden
+                </Button.ToolTip>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="assets/images/Farm.png"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Label Content="Farm" Foreground="black" FontSize="16"/>
+                        <Label Name="LblFarmPrice" Content="1100" FontWeight="Bold"/>
+                    </StackPanel>
+                    <Label Name="LblFarmCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" FontSize="24"/>
+                </Grid>
+            </Button>
+
+            <Button Name="BtnMine" Grid.Row="4" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    47 Cookies per seconden
+                </Button.ToolTip>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="assets/images/Mine.png"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Label Content="Mine" Foreground="black" FontSize="16"/>
+                        <Label Name="LblMinePrice" Content="12000" FontWeight="Bold"/>
+                    </StackPanel>
+                    <Label Name="LblMineCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" FontSize="24"/>
+                </Grid>
+            </Button>
+        </Grid>
+
+
     </Grid>
 </Window>
