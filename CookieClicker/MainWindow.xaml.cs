@@ -29,9 +29,12 @@ namespace CookieClicker
 
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ClickAnimation();
-            cookieCounter++;
-            UpdateCookieDisplay();
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                ClickAnimation();
+                cookieCounter++;
+                UpdateCookieDisplay();
+            }
         }
         private void UpdateCookieDisplay()
         {
