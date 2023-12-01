@@ -21,23 +21,23 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private decimal cookieCounter = 0;
+        private double cookieCounter = 0;
 
         private int pointerCounter = 0;
-        private decimal pointerPrice = 15;
-        private const decimal pointerBasePrice = 15;
+        private double pointerPrice = 15;
+        private const double pointerBasePrice = 15;
 
         private int grannyCounter = 0;
-        private decimal grannyPrice = 100;
-        private const decimal grannyBasePrice = 100;
+        private double grannyPrice = 100;
+        private const double grannyBasePrice = 100;
 
         private int farmCounter = 0;
-        private decimal farmPrice = 1100;
-        private const decimal farmBasePrice = 1100;
+        private double farmPrice = 1100;
+        private const double farmBasePrice = 1100;
 
         private int mineCounter = 0;
-        private decimal minePrice = 12000;
-        private const decimal mineBasePrice = 12000;
+        private double minePrice = 12000;
+        private const double mineBasePrice = 12000;
         public MainWindow()
         {
             InitializeComponent();
@@ -88,6 +88,22 @@ namespace CookieClicker
             ImgCookie.Source = bitmapImage;
         }
 
+        public double UpdatePrice(double price, double baseprice, int counter)
+        {
+            if (counter >= 1)
+            {
+                return price = Math.Round(baseprice * Math.Pow(1.15, counter));
+            }
+            return baseprice;
+
+        }
+        public void UpdateAllPrices()
+        {
+            pointerPrice = UpdatePrice(pointerPrice, pointerBasePrice, pointerCounter);
+            grannyPrice = UpdatePrice(grannyPrice, grannyBasePrice, grannyCounter);
+            farmPrice = UpdatePrice(farmPrice, farmBasePrice, farmCounter);
+            minePrice = UpdatePrice(minePrice, mineBasePrice, mineCounter);
+        }
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -111,6 +127,7 @@ namespace CookieClicker
                     mineCounter++;
                     break;
             }
+            UpdateAllPrices();
             UpdateCookieDisplay();
             ButtonEnabler();
         }
