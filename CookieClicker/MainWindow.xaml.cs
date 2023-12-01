@@ -21,6 +21,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
+        private decimal cookieCounter = 0; 
         public MainWindow()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace CookieClicker
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ClickAnimation();
+            cookieCounter++;
         }
         public void ClickAnimation()
         {
