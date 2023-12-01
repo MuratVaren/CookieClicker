@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CookieClicker
 {
@@ -38,9 +39,32 @@ namespace CookieClicker
         private int mineCounter = 0;
         private double minePrice = 12000;
         private const double mineBasePrice = 12000;
+
+        private readonly DispatcherTimer PassiveIncomeTimer = new DispatcherTimer();
+
         public MainWindow()
         {
             InitializeComponent();
+            PassiveIncomeTimer.Tick += PassiveIncomeTimer_Tick;
+            PassiveIncomeTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            PassiveIncomeTimer.Start();
+        }
+
+        private void PassiveIncomeTimer_Tick(object sender, EventArgs e)
+        {
+            AddAllPassiveIncome();
+            UpdateCookieDisplay();
+        }
+        public void AddPassiveIncome(int counter, double ammount)
+        {
+            cookieCounter += counter * ammount;
+        }
+        public void AddAllPassiveIncome()
+        {
+            AddPassiveIncome(pointerCounter, 0.001);
+            AddPassiveIncome(grannyCounter, 0.01);
+            AddPassiveIncome(farmCounter, 0.08);
+            AddPassiveIncome(mineCounter, 0.47);
         }
 
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
@@ -88,21 +112,21 @@ namespace CookieClicker
             ImgCookie.Source = bitmapImage;
         }
 
-        public double UpdatePrice(double price, double baseprice, int counter)
+        public double UpdatePrice(double baseprice, int counter)
         {
             if (counter >= 1)
             {
-                return price = Math.Round(baseprice * Math.Pow(1.15, counter));
+                return Math.Round(baseprice * Math.Pow(1.15, counter));
             }
             return baseprice;
 
         }
         public void UpdateAllPrices()
         {
-            pointerPrice = UpdatePrice(pointerPrice, pointerBasePrice, pointerCounter);
-            grannyPrice = UpdatePrice(grannyPrice, grannyBasePrice, grannyCounter);
-            farmPrice = UpdatePrice(farmPrice, farmBasePrice, farmCounter);
-            minePrice = UpdatePrice(minePrice, mineBasePrice, mineCounter);
+            pointerPrice = UpdatePrice(pointerBasePrice, pointerCounter);
+            grannyPrice = UpdatePrice(grannyBasePrice, grannyCounter);
+            farmPrice = UpdatePrice(farmBasePrice, farmCounter);
+            minePrice = UpdatePrice(mineBasePrice, mineCounter);
         }
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
