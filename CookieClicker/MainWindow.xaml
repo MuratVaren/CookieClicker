@@ -40,6 +40,7 @@
             </Grid.RowDefinitions>
 
 
+            <Label Name="LblPassiveIncomePerSecond" VerticalAlignment="Bottom"  FontSize="24" Grid.Row="0"/>
             <Border Grid.Row="1" Grid.RowSpan="4" Background="LightGray">
             </Border>
             <Button Name="BtnPointer" Grid.Row="1" HorizontalContentAlignment="Stretch" 

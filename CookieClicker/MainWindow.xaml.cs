@@ -54,6 +54,7 @@ namespace CookieClicker
         {
             AddAllPassiveIncome();
             UpdateCookieDisplay();
+            ButtonEnabler();
         }
         public void AddPassiveIncome(int counter, double ammount)
         {
@@ -81,6 +82,18 @@ namespace CookieClicker
         {
             LblCookieCount.Content = $"{Math.Floor(cookieCounter)} Cookies";
             this.Title = $"{Math.Floor(cookieCounter)} Cookies";
+
+            LblPointerPrice.Content = pointerPrice;
+            LblGrannyPrice.Content = grannyPrice;
+            LblFarmPrice.Content = farmPrice;
+            LblMinePrice.Content = minePrice;
+
+            LblPointerCounter.Content = pointerCounter;
+            LblGrannyCounter.Content = grannyCounter;
+            LblFarmCounter.Content = farmCounter;
+            LblMineCounter.Content = mineCounter;
+
+            LblPassiveIncomePerSecond.Content = $"+{(pointerCounter * 0.1) + (grannyCounter * 1) + (farmCounter * 8) + (mineCounter * 47)}";
         }
         
         public void ButtonEnabler()
