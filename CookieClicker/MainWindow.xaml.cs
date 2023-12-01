@@ -48,6 +48,7 @@ namespace CookieClicker
             PassiveIncomeTimer.Tick += PassiveIncomeTimer_Tick;
             PassiveIncomeTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             PassiveIncomeTimer.Start();
+            Animations();
         }
 
         private void PassiveIncomeTimer_Tick(object sender, EventArgs e)
@@ -66,6 +67,33 @@ namespace CookieClicker
             AddPassiveIncome(grannyCounter, 0.01);
             AddPassiveIncome(farmCounter, 0.08);
             AddPassiveIncome(mineCounter, 0.47);
+        }
+
+        public void Animations()
+        {
+            ColorAnimationUsingKeyFrames colorAnimation = new ColorAnimationUsingKeyFrames()
+            {
+                AutoReverse = true,
+                RepeatBehavior = RepeatBehavior.Forever,
+                Duration = TimeSpan.FromMilliseconds(6000)
+            };
+            colorAnimation.KeyFrames.Add(new LinearColorKeyFrame(Colors.Red, KeyTime.FromPercent(0.0)));
+            colorAnimation.KeyFrames.Add(new LinearColorKeyFrame(Colors.Blue, KeyTime.FromPercent(0.5)));
+            colorAnimation.KeyFrames.Add(new LinearColorKeyFrame(Colors.Green, KeyTime.FromPercent(1.0)));
+
+            LblPassiveIncomePerSecond.Foreground = new SolidColorBrush(Colors.Red);
+
+            DoubleAnimation doubleAnimation = new DoubleAnimation()
+            {
+                From = 24,
+                To = 40,
+                Duration = TimeSpan.FromMilliseconds(400),
+                AutoReverse = true,
+                RepeatBehavior = RepeatBehavior.Forever,
+            };
+
+            LblPassiveIncomePerSecond.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+            LblPassiveIncomePerSecond.BeginAnimation(Label.FontSizeProperty, doubleAnimation);
         }
 
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
