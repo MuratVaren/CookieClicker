@@ -87,5 +87,32 @@ namespace CookieClicker
             BitmapImage bitmapImage = new BitmapImage(new Uri("Assets/Images/Cookie.png", UriKind.RelativeOrAbsolute));
             ImgCookie.Source = bitmapImage;
         }
+
+        private void BtnBuy_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            string buttonContent = button.Name.Replace("Btn", "");
+            switch (buttonContent)
+            {
+                case "Pointer":
+                    cookieCounter -= pointerPrice;
+                    pointerCounter++;
+                    break;
+                case "Granny":
+                    cookieCounter -= grannyPrice;
+                    grannyCounter++;
+                    break;
+                case "Farm":
+                    cookieCounter -= farmPrice;
+                    farmCounter++;
+                    break;
+                case "Mine":
+                    cookieCounter -= minePrice;
+                    mineCounter++;
+                    break;
+            }
+            UpdateCookieDisplay();
+            ButtonEnabler();
+        }
     }
 }
