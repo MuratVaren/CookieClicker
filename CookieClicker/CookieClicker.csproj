@@ -100,5 +100,8 @@
   <ItemGroup>
     <Resource Include="Assets\Images\Background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Cookie_Cute.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
