@@ -9,7 +9,6 @@
     <Window.Background>
         <ImageBrush ImageSource="Assets/Images/Background.png"/>
     </Window.Background>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

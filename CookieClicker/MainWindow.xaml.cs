@@ -21,7 +21,23 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private decimal cookieCounter = 0; 
+        private decimal cookieCounter = 0;
+
+        private int pointerCounter = 0;
+        private decimal pointerPrice = 15;
+        private const decimal pointerBasePrice = 15;
+
+        private int grannyCounter = 0;
+        private decimal grannyPrice = 100;
+        private const decimal grannyBasePrice = 100;
+
+        private int farmCounter = 0;
+        private decimal farmPrice = 1100;
+        private const decimal farmBasePrice = 1100;
+
+        private int mineCounter = 0;
+        private decimal minePrice = 12000;
+        private const decimal mineBasePrice = 12000;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,12 +50,21 @@ namespace CookieClicker
                 ClickAnimation();
                 cookieCounter++;
                 UpdateCookieDisplay();
+                ButtonEnabler();
             }
         }
         private void UpdateCookieDisplay()
         {
             LblCookieCount.Content = $"{Math.Floor(cookieCounter)} Cookies";
             this.Title = $"{Math.Floor(cookieCounter)} Cookies";
+        }
+        
+        public void ButtonEnabler()
+        {
+            BtnPointer.IsEnabled = cookieCounter >= pointerPrice;
+            BtnGranny.IsEnabled = cookieCounter >= grannyPrice;
+            BtnFarm.IsEnabled = cookieCounter >= farmPrice;
+            BtnMine.IsEnabled = cookieCounter >= minePrice;
         }
         public void ClickAnimation()
         {
