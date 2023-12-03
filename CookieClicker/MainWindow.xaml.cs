@@ -105,9 +105,8 @@ namespace CookieClicker
             }
             else
             {
-                LblCookieCount.Content = $"{Math.Floor(cookieCounter)} Cookies";
-                this.Title = $"{Math.Floor(cookieCounter)} Cookies";
-
+                LblCookieCount.Content = $"{Math.Floor(cookieCounter).ToString("N0").Replace('.', ' ')} Cookies";
+                this.Title = $"{Math.Floor(cookieCounter).ToString("N0").Replace('.', ' ')} Cookies";
             }
         }
 
