@@ -70,6 +70,47 @@ namespace CookieClicker
             AddPassiveIncome(mineCounter, 0.47);
         }
 
+        public void NumberFormat()
+        {
+            double miljoen = 1000000;
+            double miljard = 1000000000;
+            double biljoen = 1000000000000;
+            double biljard = 1000000000000000;
+            double triljoen = 1000000000000000000;
+
+            if (cookieCounter >= miljoen && cookieCounter < miljard)
+            {
+                LblCookieCount.Content = $"{cookieCounter / miljoen:F3} Miljoen Cookies";
+                this.Title = $"{cookieCounter / miljoen:F3} Miljoen Cookies";
+            }
+            else if (cookieCounter >= miljard && cookieCounter < biljoen)
+            {
+                LblCookieCount.Content = $"{cookieCounter / miljard:F3} Miljard Cookies";
+                this.Title = $"{cookieCounter / miljard:F3} Miljard Cookies";
+            }
+            else if (cookieCounter >= biljoen && cookieCounter < biljard)
+            {
+                LblCookieCount.Content = $"{cookieCounter / biljoen:F3} Biljoen Cookies";
+                this.Title = $"{cookieCounter / biljoen:F3} Biljoen Cookies";
+            }
+            else if (cookieCounter >= biljard && cookieCounter < triljoen)
+            {
+                LblCookieCount.Content = $"{cookieCounter / biljard:F3} Biljard Cookies";
+                this.Title = $"{cookieCounter / biljard:F3} Biljard Cookies";
+            }
+            else if (cookieCounter >= triljoen)
+            {
+                LblCookieCount.Content = $"{cookieCounter / triljoen:F3} Triljoen Cookies";
+                this.Title = $"{cookieCounter / triljoen:F3} Triljoen Cookies";
+            }
+            else
+            {
+                LblCookieCount.Content = $"{Math.Floor(cookieCounter)} Cookies";
+                this.Title = $"{Math.Floor(cookieCounter)} Cookies";
+
+            }
+        }
+
         public void Animations()
         {
             ColorAnimationUsingKeyFrames colorAnimation = new ColorAnimationUsingKeyFrames()
@@ -109,8 +150,7 @@ namespace CookieClicker
         }
         private void UpdateCookieDisplay()
         {
-            LblCookieCount.Content = $"{Math.Floor(cookieCounter)} Cookies";
-            this.Title = $"{Math.Floor(cookieCounter)} Cookies";
+            NumberFormat();
 
             LblPointerPrice.Content = pointerPrice;
             LblGrannyPrice.Content = grannyPrice;
