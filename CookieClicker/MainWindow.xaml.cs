@@ -42,13 +42,14 @@ namespace CookieClicker
 
         private readonly DispatcherTimer PassiveIncomeTimer = new DispatcherTimer();
 
+        private bool passiveIncome = false;
+
         public MainWindow()
         {
             InitializeComponent();
             PassiveIncomeTimer.Tick += PassiveIncomeTimer_Tick;
             PassiveIncomeTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             PassiveIncomeTimer.Start();
-            Animations();
         }
 
         private void PassiveIncomeTimer_Tick(object sender, EventArgs e)
@@ -191,6 +192,11 @@ namespace CookieClicker
                     cookieCounter -= minePrice;
                     mineCounter++;
                     break;
+            }
+            if(passiveIncome == false)
+            {
+                passiveIncome = true;
+                Animations();
             }
             UpdateAllPrices();
             UpdateCookieDisplay();
