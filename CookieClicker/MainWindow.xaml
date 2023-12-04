@@ -37,11 +37,14 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
 
             <Label Name="LblPassiveIncomePerSecond" VerticalAlignment="Bottom"  FontSize="24" Grid.Row="0"/>
-            <Border Grid.Row="1" Grid.RowSpan="4" Background="LightGray">
+            <Border Grid.Row="1" Grid.RowSpan="7" Background="LightGray">
             </Border>
             <Button Name="BtnPointer" Grid.Row="1" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent"
@@ -131,7 +134,75 @@
                            HorizontalAlignment="Center" FontSize="24"/>
                 </Grid>
             </Button>
+
+            <Button Name="BtnFactory" Grid.Row="5" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    260 Cookies per seconden
+                </Button.ToolTip>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="assets/images/Factory.png"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Label Content="Factory" Foreground="black" FontSize="16"/>
+                        <Label Name="LblFactoryPrice" Content="130000" FontWeight="Bold"/>
+                    </StackPanel>
+                    <Label Name="LblFactoryCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" FontSize="24"/>
+                </Grid>
+            </Button>
+
+            <Button Name="BtnBank" Grid.Row="6" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    1400 Cookies per seconden
+                </Button.ToolTip>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="assets/images/Bank.png"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Label Content="Factory" Foreground="black" FontSize="16"/>
+                        <Label Name="LblBankPrice" Content="1400000" FontWeight="Bold"/>
+                    </StackPanel>
+                    <Label Name="LblBankCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" FontSize="24"/>
+                </Grid>
+            </Button>
+
+            <Button Name="BtnTemple" Grid.Row="7" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    7800 Cookies per seconden
+                </Button.ToolTip>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="assets/images/Temple.png"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Label Content="Temple" Foreground="black" FontSize="16"/>
+                        <Label Name="LblTemplePrice" Content="20000000" FontWeight="Bold"/>
+                    </StackPanel>
+                    <Label Name="LblTempleCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" FontSize="24"/>
+                </Grid>
+            </Button>
         </Grid>
+        
+        
 
 
     </Grid>

@@ -22,7 +22,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 0;
+        private double cookieCounter = 9999990;
 
         private int pointerCounter = 0;
         private double pointerPrice = 15;
@@ -39,6 +39,18 @@ namespace CookieClicker
         private int mineCounter = 0;
         private double minePrice = 12000;
         private const double mineBasePrice = 12000;
+
+        private int factoryCounter = 0;
+        private double factoryPrice = 130000;
+        private const double factoryBasePrice = 130000;
+
+        private int bankCounter = 0;
+        private double bankPrice = 1400000;
+        private const double bankBasePrice = 1400000;
+
+        private int templeCounter = 0;
+        private double templePrice = 20000000 ;
+        private const double templeBasePrice = 20000000;
 
         private readonly DispatcherTimer PassiveIncomeTimer = new DispatcherTimer();
 
@@ -68,6 +80,9 @@ namespace CookieClicker
             AddPassiveIncome(grannyCounter, 0.01);
             AddPassiveIncome(farmCounter, 0.08);
             AddPassiveIncome(mineCounter, 0.47);
+            AddPassiveIncome(factoryCounter, 2.60);
+            AddPassiveIncome(bankCounter, 14);
+            AddPassiveIncome(templeCounter, 78);
         }
 
         public void NumberFormat()
@@ -127,7 +142,7 @@ namespace CookieClicker
             DoubleAnimation doubleAnimation = new DoubleAnimation()
             {
                 From = 24,
-                To = 40,
+                To = 28,
                 Duration = TimeSpan.FromMilliseconds(400),
                 AutoReverse = true,
                 RepeatBehavior = RepeatBehavior.Forever,
@@ -155,13 +170,19 @@ namespace CookieClicker
             LblGrannyPrice.Content = grannyPrice;
             LblFarmPrice.Content = farmPrice;
             LblMinePrice.Content = minePrice;
+            LblFactoryPrice.Content = factoryPrice;
+            LblBankPrice.Content = bankPrice;
+            LblTemplePrice.Content = templePrice;
 
             LblPointerCounter.Content = pointerCounter;
             LblGrannyCounter.Content = grannyCounter;
             LblFarmCounter.Content = farmCounter;
             LblMineCounter.Content = mineCounter;
+            LblFactoryCounter.Content = factoryCounter;
+            LblBankCounter.Content = bankCounter;
+            LblTempleCounter.Content = templeCounter;
 
-            LblPassiveIncomePerSecond.Content = $"+{(pointerCounter * 0.1) + (grannyCounter * 1) + (farmCounter * 8) + (mineCounter * 47)}";
+            LblPassiveIncomePerSecond.Content = $"+{(pointerCounter * 0.1) + (grannyCounter * 1) + (farmCounter * 8) + (mineCounter * 47) + (factoryCounter * 260) + (bankCounter * 1400) + (templeCounter * 7800)}";
         }
         
         public void ButtonEnabler()
@@ -170,6 +191,9 @@ namespace CookieClicker
             BtnGranny.IsEnabled = cookieCounter >= grannyPrice;
             BtnFarm.IsEnabled = cookieCounter >= farmPrice;
             BtnMine.IsEnabled = cookieCounter >= minePrice;
+            BtnFactory.IsEnabled = cookieCounter >= factoryPrice;
+            BtnBank.IsEnabled = cookieCounter >= bankPrice;
+            BtnTemple.IsEnabled = cookieCounter >= templePrice;
         }
         public void ClickAnimation()
         {
@@ -208,6 +232,10 @@ namespace CookieClicker
             grannyPrice = UpdatePrice(grannyBasePrice, grannyCounter);
             farmPrice = UpdatePrice(farmBasePrice, farmCounter);
             minePrice = UpdatePrice(mineBasePrice, mineCounter);
+            factoryPrice = UpdatePrice(factoryBasePrice, factoryCounter);
+            bankPrice = UpdatePrice(bankBasePrice, bankCounter);
+            templePrice = UpdatePrice(templeBasePrice, templeCounter);
+
         }
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
@@ -230,6 +258,18 @@ namespace CookieClicker
                 case "Mine":
                     cookieCounter -= minePrice;
                     mineCounter++;
+                    break;
+                case "Factory":
+                    cookieCounter -= factoryPrice;
+                    factoryCounter++;
+                    break;
+                case "Bank":
+                    cookieCounter -= bankPrice;
+                    bankCounter++;
+                    break;
+                case "Temple":
+                    cookieCounter -= templePrice;
+                    templeCounter++;
                     break;
             }
             if(passiveIncome == false)
