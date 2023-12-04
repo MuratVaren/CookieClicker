@@ -18,6 +18,7 @@
         
         <!-- COL 0 -->
         <StackPanel VerticalAlignment="Center">
+            <Label Name="LblBakeryName" Content="PXL-Baker" HorizontalAlignment="Center" FontWeight="UltraBold" FontSize="16"/>
             <Label Name="LblCookieCount" Content="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>
             <Image Name="ImgCookie" Source="Assets/Images/Cookie.png" MouseDown="ImgCookie_MouseDown">
                 <Image.Effect>
