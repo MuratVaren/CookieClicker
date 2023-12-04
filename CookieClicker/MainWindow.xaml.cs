@@ -22,7 +22,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 9999990;
+        private double cookieCounter = 0;
 
         private int pointerCounter = 0;
         private double pointerPrice = 15;
