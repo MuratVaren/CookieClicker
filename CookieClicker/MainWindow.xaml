@@ -42,67 +42,84 @@
             </Grid.RowDefinitions>
 
             <Border Grid.Row="1" Grid.RowSpan="7" BorderBrush="Black" BorderThickness="1">
+                <ScrollViewer  VerticalScrollBarVisibility="Auto">
                     <StackPanel>
 
                         <StackPanel Name="StackpanelPointer" Visibility="Collapsed">
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/PointerBackground.jpg"/>
                             </StackPanel.Background>
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
                                 <StackPanel Name="StackpanelPointerItems" Orientation="Horizontal">
                                 </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
 
                         <StackPanel Name="StackpanelGranny" Visibility="Collapsed">
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/GrannyBackground.jpg"/>
                             </StackPanel.Background>
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
                                 <StackPanel Name="StackpanelGrannyItems" Orientation="Horizontal">
                                 </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
 
                         <StackPanel Name="StackpanelFarm" Visibility="Collapsed">
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FarmBackground.jpg"/>
                             </StackPanel.Background>
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
                                 <StackPanel Name="StackpanelFarmItems" Orientation="Horizontal">
                                 </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
 
                         <StackPanel Name="StackpanelMine" Visibility="Collapsed">
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/MineBackground.jpg"/>
                             </StackPanel.Background>
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
                                 <StackPanel Name="StackpanelMineItems" Orientation="Horizontal">
                                 </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
 
                         <StackPanel Name="StackpanelFactory" Visibility="Collapsed">
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FactoryBackground.jpg"/>
                             </StackPanel.Background>
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
                                 <StackPanel Name="StackpanelFactoryItems" Orientation="Horizontal">
                                 </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
 
                         <StackPanel Name="StackpanelBank" Visibility="Collapsed">
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/images/Backgrounds/BankBackground.jpg"/>
                             </StackPanel.Background>
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
                                 <StackPanel Name="StackpanelBankItems" Orientation="Horizontal">
                                 </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
 
                         <StackPanel Name="StackpanelTemple" Visibility="Collapsed">
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="assets/images/Backgrounds/TempleBackground.jpg"/>
                             </StackPanel.Background>
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
                                 <StackPanel Name="StackpanelTempleItems" Orientation="Horizontal">
                                 </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
+
                     </StackPanel>
+                </ScrollViewer>
             </Border>
         </Grid>
-        
+
         <!-- COL 2 -->
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
