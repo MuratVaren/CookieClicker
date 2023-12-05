@@ -23,7 +23,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 0;
+        private double cookieCounter = 99999999990;
 
         private int pointerCounter = 0;
         private double pointerPrice = 15;
@@ -247,30 +247,37 @@ namespace CookieClicker
                 case "Pointer":
                     cookieCounter -= pointerPrice;
                     pointerCounter++;
+                    StackpanelVisualizeItems("Pointer");
                     break;
                 case "Granny":
                     cookieCounter -= grannyPrice;
                     grannyCounter++;
+                    StackpanelVisualizeItems("Granny");
                     break;
                 case "Farm":
                     cookieCounter -= farmPrice;
                     farmCounter++;
+                    StackpanelVisualizeItems("Farm");
                     break;
                 case "Mine":
                     cookieCounter -= minePrice;
                     mineCounter++;
+                    StackpanelVisualizeItems("Mine");
                     break;
                 case "Factory":
                     cookieCounter -= factoryPrice;
                     factoryCounter++;
+                    StackpanelVisualizeItems("Factory");
                     break;
                 case "Bank":
                     cookieCounter -= bankPrice;
                     bankCounter++;
+                    StackpanelVisualizeItems("Bank");
                     break;
                 case "Temple":
                     cookieCounter -= templePrice;
                     templeCounter++;
+                    StackpanelVisualizeItems("Temple");
                     break;
             }
             if(passiveIncome == false)
@@ -290,6 +297,23 @@ namespace CookieClicker
                 name = Interaction.InputBox("Enter a new name for the bakery");
             }
             LblBakeryName.Content = name;
+        }
+
+        public void StackpanelVisualizeItems(string itemName)
+        {
+            StackPanel stackpanel = FindName($"Stackpanel{itemName}") as StackPanel;
+            if (stackpanel.Visibility == Visibility.Collapsed)
+            {
+                stackpanel.Visibility = Visibility.Visible;
+            }
+
+            BitmapImage bitmap = new BitmapImage(new Uri($"Assets/Images/{itemName}.png", UriKind.RelativeOrAbsolute));
+            Image image = new Image();
+            image.Source = bitmap;
+            image.Width = 80;
+
+            StackPanel stackpanelItems = FindName($"Stackpanel{itemName}Items") as StackPanel;
+            stackpanelItems.Children.Add(image);
         }
     }
 }
