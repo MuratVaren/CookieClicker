@@ -172,7 +172,7 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="assets/images/Bank.png"/>
                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Label Content="Factory" Foreground="black" FontSize="16"/>
+                        <Label Content="Bank" Foreground="black" FontSize="16"/>
                         <Label Name="LblBankPrice" Content="1400000" FontWeight="Bold"/>
                     </StackPanel>
                     <Label Name="LblBankCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
