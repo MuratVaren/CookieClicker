@@ -18,7 +18,7 @@
         
         <!-- COL 0 -->
         <StackPanel VerticalAlignment="Center">
-            <Label Name="LblBakeryName" Content="PXL-Baker" HorizontalAlignment="Center" FontWeight="UltraBold" FontSize="16" MouseDown="LblBakeryName_MouseDown"/>
+            <Label Name="LblBakeryName" Content="PXL-Bakery" HorizontalAlignment="Center" FontWeight="UltraBold" FontSize="16" MouseDown="LblBakeryName_MouseDown"/>
             <Label Name="LblCookieCount" Content="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>
             <Image Name="ImgCookie" Source="Assets/Images/Cookie.png" MouseDown="ImgCookie_MouseDown">
                 <Image.Effect>
@@ -26,9 +26,83 @@
                 </Image.Effect>
             </Image>
         </StackPanel>
-            
-        <!-- COl 1 -->
 
+        <!-- COl 1 -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="1" Grid.RowSpan="7" BorderBrush="Black" BorderThickness="1">
+                    <StackPanel>
+
+                        <StackPanel Name="StackpanelPointer" Visibility="Collapsed">
+                            <StackPanel.Background>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/PointerBackground.jpg"/>
+                            </StackPanel.Background>
+                                <StackPanel Name="StackpanelPointerItems" Orientation="Horizontal">
+                                </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Name="StackpanelGranny" Visibility="Collapsed">
+                            <StackPanel.Background>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/GrannyBackground.jpg"/>
+                            </StackPanel.Background>
+                                <StackPanel Name="StackpanelGrannyItems" Orientation="Horizontal">
+                                </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Name="StackpanelFarm" Visibility="Collapsed">
+                            <StackPanel.Background>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FarmBackground.jpg"/>
+                            </StackPanel.Background>
+                                <StackPanel Name="StackpanelFarmItems" Orientation="Horizontal">
+                                </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Name="StackpanelMine" Visibility="Collapsed">
+                            <StackPanel.Background>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/MineBackground.jpg"/>
+                            </StackPanel.Background>
+                                <StackPanel Name="StackpanelMineItems" Orientation="Horizontal">
+                                </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Name="StackpanelFactory" Visibility="Collapsed">
+                            <StackPanel.Background>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FactoryBackground.jpg"/>
+                            </StackPanel.Background>
+                                <StackPanel Name="StackpanelFactoryItems" Orientation="Horizontal">
+                                </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Name="StackpanelBank" Visibility="Collapsed">
+                            <StackPanel.Background>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/images/Backgrounds/BankBackground.jpg"/>
+                            </StackPanel.Background>
+                                <StackPanel Name="StackpanelBankItems" Orientation="Horizontal">
+                                </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Name="StackpanelTemple" Visibility="Collapsed">
+                            <StackPanel.Background>
+                                <ImageBrush TileMode="Tile" ImageSource="assets/images/Backgrounds/TempleBackground.jpg"/>
+                            </StackPanel.Background>
+                                <StackPanel Name="StackpanelTempleItems" Orientation="Horizontal">
+                                </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+            </Border>
+        </Grid>
+        
         <!-- COL 2 -->
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>

@@ -125,5 +125,14 @@
   <ItemGroup>
     <Resource Include="Assets\Images\Temple.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Backgrounds\BankBackground.jpg" />
+    <Resource Include="Assets\Images\Backgrounds\FactoryBackground.jpg" />
+    <Resource Include="Assets\Images\Backgrounds\FarmBackground.jpg" />
+    <Resource Include="Assets\Images\Backgrounds\GrannyBackground.jpg" />
+    <Resource Include="Assets\Images\Backgrounds\MineBackground.jpg" />
+    <Resource Include="Assets\Images\Backgrounds\PointerBackground.jpg" />
+    <Resource Include="Assets\Images\Backgrounds\TempleBackground.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
