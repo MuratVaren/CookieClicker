@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -280,6 +281,15 @@ namespace CookieClicker
             UpdateAllPrices();
             UpdateCookieDisplay();
             ButtonEnabler();
+        }
+        private void LblBakeryName_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            string name = "";
+            while (string.IsNullOrWhiteSpace(name))
+            {
+                name = Interaction.InputBox("Enter a new name for the bakery");
+            }
+            LblBakeryName.Content = name;
         }
     }
 }
