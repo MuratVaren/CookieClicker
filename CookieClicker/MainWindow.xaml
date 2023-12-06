@@ -17,15 +17,35 @@
         </Grid.ColumnDefinitions>
         
         <!-- COL 0 -->
-        <StackPanel VerticalAlignment="Center">
-            <Label Name="LblBakeryName" Content="PXL-Bakery" HorizontalAlignment="Center" FontWeight="UltraBold" FontSize="16" MouseDown="LblBakeryName_MouseDown"/>
-            <Label Name="LblCookieCount" Content="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>
-            <Image Name="ImgCookie" Source="Assets/Images/Cookie.png" MouseDown="ImgCookie_MouseDown">
-                <Image.Effect>
-                    <DropShadowEffect/>
-                </Image.Effect>
-            </Image>
-        </StackPanel>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Viewbox Grid.Row="0">
+                <Label  Name="LblBakeryName" Content="PXL-Bakery" FontWeight="UltraBold" MouseDown="LblBakeryName_MouseDown"/>
+            </Viewbox>
+
+            <Viewbox  Grid.Row="1">
+                <Label Name="LblCookieCount" Content="0" HorizontalAlignment="Center" FontWeight="Bold" />
+
+            </Viewbox>
+            <Viewbox Grid.Row="2" Grid.RowSpan="6">
+                <Image Name="ImgCookie" Source="Assets/Images/Cookie.png" MouseDown="ImgCookie_MouseDown">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
+            </Viewbox>
+        </Grid>
 
         <!-- COl 1 -->
         <Grid Grid.Column="1">
@@ -49,7 +69,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/PointerBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
                                 <StackPanel Name="StackpanelPointerItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -59,7 +79,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/GrannyBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
                                 <StackPanel Name="StackpanelGrannyItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -69,7 +89,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FarmBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
                                 <StackPanel Name="StackpanelFarmItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -79,7 +99,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/MineBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
                                 <StackPanel Name="StackpanelMineItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -89,7 +109,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FactoryBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
                                 <StackPanel Name="StackpanelFactoryItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -99,7 +119,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/images/Backgrounds/BankBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
                                 <StackPanel Name="StackpanelBankItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -109,7 +129,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="assets/images/Backgrounds/TempleBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="100">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
                                 <StackPanel Name="StackpanelTempleItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -135,7 +155,9 @@
             </Grid.RowDefinitions>
 
 
-            <Label Name="LblPassiveIncomePerSecond" VerticalAlignment="Bottom"  FontSize="24" Grid.Row="0"/>
+            <Viewbox Grid.Row="0"  VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                <Label Name="LblPassiveIncomePerSecond"  FontSize="24"/>
+            </Viewbox>
             <Border Grid.Row="1" Grid.RowSpan="7" Background="LightGray">
             </Border>
             <Button Name="BtnPointer" Grid.Row="1" HorizontalContentAlignment="Stretch" 
@@ -152,12 +174,15 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="assets/images/Pointer.png"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Label Content="Pointer" Foreground="black" FontSize="16"/>
-                        <Label Name="LblPointerPrice" Content="15" FontWeight="Bold"/>
-                    </StackPanel>
-                    <Label Name="LblPointerCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" FontSize="24"/>
+                    <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                        <StackPanel>
+                            <Label Content="Pointer" Foreground="black" FontSize="40"/>
+                            <Label Name="LblPointerPrice" Content="15" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox  Grid.Column="2">
+                        <Label Name="LblPointerCounter" Content="0"/>
+                    </Viewbox>
                 </Grid>
             </Button>
 
@@ -174,12 +199,15 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="assets/images/Granny.png"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Label Content="Granny" Foreground="black" FontSize="16"/>
-                        <Label Name="LblGrannyPrice" Content="100" FontWeight="Bold"/>
-                    </StackPanel>
-                    <Label Name="LblGrannyCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" FontSize="24"/>
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <Label Content="Granny" Foreground="black" FontSize="40"/>
+                            <Label Name="LblGrannyPrice" Content="100" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox Grid.Column="2">
+                        <Label Name="LblGrannyCounter" Content="0"/>
+                    </Viewbox>
                 </Grid>
             </Button>
 
@@ -196,12 +224,15 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="assets/images/Farm.png"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Label Content="Farm" Foreground="black" FontSize="16"/>
-                        <Label Name="LblFarmPrice" Content="1100" FontWeight="Bold"/>
-                    </StackPanel>
-                    <Label Name="LblFarmCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" FontSize="24"/>
+                    <Viewbox  Grid.Column="1" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <Label Content="Farm" Foreground="black" FontSize="40"/>
+                            <Label Name="LblFarmPrice" Content="1100" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox Grid.Column="2">
+                        <Label Name="LblFarmCounter" Content="0"/>
+                    </Viewbox>
                 </Grid>
             </Button>
 
@@ -218,12 +249,15 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="assets/images/Mine.png"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Label Content="Mine" Foreground="black" FontSize="16"/>
-                        <Label Name="LblMinePrice" Content="12000" FontWeight="Bold"/>
-                    </StackPanel>
-                    <Label Name="LblMineCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" FontSize="24"/>
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <Label Content="Mine" Foreground="black" FontSize="40"/>
+                            <Label Name="LblMinePrice" Content="12000" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox  Grid.Column="2">
+                        <Label Name="LblMineCounter" Content="0"/>
+                    </Viewbox>
                 </Grid>
             </Button>
 
@@ -240,12 +274,15 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="assets/images/Factory.png"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Label Content="Factory" Foreground="black" FontSize="16"/>
-                        <Label Name="LblFactoryPrice" Content="130000" FontWeight="Bold"/>
-                    </StackPanel>
-                    <Label Name="LblFactoryCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" FontSize="24"/>
+                    <Viewbox  Grid.Column="1" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <Label Content="Factory" Foreground="black" FontSize="40"/>
+                            <Label Name="LblFactoryPrice" Content="130000" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox Grid.Column="2">
+                        <Label Name="LblFactoryCounter" Content="0"/>
+                    </Viewbox>
                 </Grid>
             </Button>
 
@@ -262,12 +299,15 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="assets/images/Bank.png"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Label Content="Bank" Foreground="black" FontSize="16"/>
-                        <Label Name="LblBankPrice" Content="1400000" FontWeight="Bold"/>
-                    </StackPanel>
-                    <Label Name="LblBankCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" FontSize="24"/>
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <Label Content="Bank" Foreground="black" FontSize="40"/>
+                            <Label Name="LblBankPrice" Content="1400000" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox  Grid.Column="2">
+                        <Label Name="LblBankCounter" Content="0"/>
+                    </Viewbox>
                 </Grid>
             </Button>
 
@@ -284,18 +324,17 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="assets/images/Temple.png"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Label Content="Temple" Foreground="black" FontSize="16"/>
-                        <Label Name="LblTemplePrice" Content="20000000" FontWeight="Bold"/>
-                    </StackPanel>
-                    <Label Name="LblTempleCounter" Grid.Column="2" Content="0" VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" FontSize="24"/>
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                        <StackPanel >
+                            <Label Content="Temple" Foreground="black" FontSize="40"/>
+                            <Label Name="LblTemplePrice" Content="20000000" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox Grid.Column="2">
+                        <Label Name="LblTempleCounter" Content="0"/>
+                    </Viewbox>
                 </Grid>
             </Button>
         </Grid>
-        
-        
-
-
     </Grid>
 </Window>
