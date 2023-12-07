@@ -24,6 +24,7 @@ namespace CookieClicker
     public partial class MainWindow : Window
     {
         private double cookieCounter = 0;
+        private double cookieTotalCounter = 0;
 
         private int pointerCounter = 0;
         private double pointerPrice = 15;
@@ -70,10 +71,12 @@ namespace CookieClicker
             AddAllPassiveIncome();
             UpdateCookieDisplay();
             ButtonEnabler();
+            ButtonVisibilityEnabler();
         }
         public void AddPassiveIncome(int counter, double ammount)
         {
             cookieCounter += counter * ammount;
+            cookieTotalCounter += counter * ammount;
         }
         public void AddAllPassiveIncome()
         {
@@ -159,8 +162,10 @@ namespace CookieClicker
             {
                 ClickAnimation();
                 cookieCounter++;
+                cookieTotalCounter++;
                 UpdateCookieDisplay();
                 ButtonEnabler();
+                ButtonVisibilityEnabler();
             }
         }
         private void UpdateCookieDisplay()
@@ -195,6 +200,16 @@ namespace CookieClicker
             BtnFactory.IsEnabled = cookieCounter >= factoryPrice;
             BtnBank.IsEnabled = cookieCounter >= bankPrice;
             BtnTemple.IsEnabled = cookieCounter >= templePrice;
+        }
+        public void ButtonVisibilityEnabler()
+        {
+            BtnPointer.Visibility = cookieTotalCounter >= pointerBasePrice ? Visibility.Visible : Visibility.Hidden;
+            BtnGranny.Visibility = cookieTotalCounter >= grannyBasePrice ? Visibility.Visible : Visibility.Hidden;
+            BtnFarm.Visibility = cookieTotalCounter >= farmBasePrice ? Visibility.Visible : Visibility.Hidden;
+            BtnMine.Visibility = cookieTotalCounter >= mineBasePrice ? Visibility.Visible : Visibility.Hidden;
+            BtnFactory.Visibility = cookieTotalCounter >= factoryBasePrice ? Visibility.Visible : Visibility.Hidden;
+            BtnBank.Visibility = cookieTotalCounter >= bankBasePrice ? Visibility.Visible : Visibility.Hidden;
+            BtnTemple.Visibility = cookieTotalCounter >= templeBasePrice ? Visibility.Visible : Visibility.Hidden;
         }
         public void ClickAnimation()
         {

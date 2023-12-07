@@ -158,10 +158,12 @@
             <Viewbox Grid.Row="0"  VerticalAlignment="Bottom" HorizontalAlignment="Left" >
                 <Label Name="LblPassiveIncomePerSecond"  FontSize="24"/>
             </Viewbox>
+            
             <Border Grid.Row="1" Grid.RowSpan="7" Background="LightGray">
             </Border>
+            
             <Button Name="BtnPointer" Grid.Row="1" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     0.1 Cookies per seconden
@@ -187,7 +189,7 @@
             </Button>
 
             <Button Name="BtnGranny" Grid.Row="2" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     1 Cookie per seconden
@@ -212,7 +214,7 @@
             </Button>
 
             <Button Name="BtnFarm" Grid.Row="3" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     8 Cookies per seconden
@@ -237,7 +239,7 @@
             </Button>
 
             <Button Name="BtnMine" Grid.Row="4" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     47 Cookies per seconden
@@ -262,7 +264,7 @@
             </Button>
 
             <Button Name="BtnFactory" Grid.Row="5" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     260 Cookies per seconden
@@ -287,7 +289,7 @@
             </Button>
 
             <Button Name="BtnBank" Grid.Row="6" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     1400 Cookies per seconden
@@ -301,7 +303,7 @@
                     <Image Grid.Column="0" Source="assets/images/Bank.png"/>
                     <Viewbox Grid.Column="1" HorizontalAlignment="Left">
                         <StackPanel>
-                            <Label Content="Bank" Foreground="black" FontSize="40"/>
+                            <Label Content="Bank" Foreground="black" FontSize="40"/> 
                             <Label Name="LblBankPrice" Content="1400000" FontWeight="Bold" FontSize="24"/>
                         </StackPanel>
                     </Viewbox>
@@ -312,7 +314,7 @@
             </Button>
 
             <Button Name="BtnTemple" Grid.Row="7" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Background="Transparent"
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     7800 Cookies per seconden
