@@ -162,7 +162,7 @@
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Button.ToolTip>
-                            0.1 Cookies per seconden
+                            0,1 Cookies per second
                         </Button.ToolTip>
 
                         <Grid>
@@ -188,7 +188,7 @@
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Button.ToolTip>
-                            1 Cookie per seconden
+                            1 Cookie per second
                         </Button.ToolTip>
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -213,7 +213,7 @@
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Button.ToolTip>
-                            8 Cookies per seconden
+                            8 Cookies per second
                         </Button.ToolTip>
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -238,7 +238,7 @@
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Button.ToolTip>
-                            47 Cookies per seconden
+                            47 Cookies per second
                         </Button.ToolTip>
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -263,7 +263,7 @@
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Button.ToolTip>
-                            260 Cookies per seconden
+                            260 Cookies per second
                         </Button.ToolTip>
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -288,7 +288,7 @@
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Button.ToolTip>
-                            1400 Cookies per seconden
+                            1400 Cookies per second
                         </Button.ToolTip>
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -313,7 +313,7 @@
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Button.ToolTip>
-                            7800 Cookies per seconden
+                            7800 Cookies per second
                         </Button.ToolTip>
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -347,7 +347,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Button Name="BtnPointerBonus" Grid.Row="0" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnBonusPointer" Grid.Row="0" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Grid>
@@ -369,7 +369,7 @@
                         </Grid>
                     </Button>
 
-                    <Button Name="BtnGrannyBonus" Grid.Row="1" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnBonusGranny" Grid.Row="1" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Grid>
@@ -391,7 +391,7 @@
                         </Grid>
                     </Button>
 
-                    <Button Name="BtnFarmBonus" Grid.Row="2" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnBonusFarm" Grid.Row="2" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Grid>
@@ -413,7 +413,7 @@
                         </Grid>
                     </Button>
 
-                    <Button Name="BtnMineBonus" Grid.Row="3" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnBonusMine" Grid.Row="3" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Grid>
@@ -435,7 +435,7 @@
                         </Grid>
                     </Button>
 
-                    <Button Name="BtnFactoryBonus" Grid.Row="4" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnBonusFactory" Grid.Row="4" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Grid>
@@ -457,7 +457,7 @@
                         </Grid>
                     </Button>
 
-                    <Button Name="BtnBankBonus" Grid.Row="5" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnBonusBank" Grid.Row="5" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Grid>
@@ -479,7 +479,7 @@
                         </Grid>
                     </Button>
 
-                    <Button Name="BtnTempleBonus" Grid.Row="6" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnBonusTemple" Grid.Row="6" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                         <Grid>

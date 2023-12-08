@@ -30,50 +30,50 @@ namespace CookieClicker
         private double pointerPrice = 15;
         private const double pointerBasePrice = 15;
         private int pointerBonus = 1;
-        private int pointerBonusCount = 0;
-
+        private int pointerBonusCounter = -1;
+        private double pointerBonusPrice = 0;
 
         private int grannyCounter = 0;
         private double grannyPrice = 100;
         private const double grannyBasePrice = 100;
         private int grannyBonus = 1;
-        private int grannyBonusCount = 0;
-
+        private int grannyBonusCounter = -1;
+        private double grannyBonusPrice = 0;
 
         private int farmCounter = 0;
         private double farmPrice = 1100;
         private const double farmBasePrice = 1100;
         private int farmBonus = 1;
-        private int farmBonusCount = 0;
-
+        private int farmBonusCounter = -1;
+        private double farmBonusPrice = 0;
 
         private int mineCounter = 0;
         private double minePrice = 12000;
         private const double mineBasePrice = 12000;
         private int mineBonus = 1;
-        private int mineBonusCount = 0;
-
+        private int mineBonusCounter = -1;
+        private double mineBonusPrice = 0;
 
         private int factoryCounter = 0;
         private double factoryPrice = 130000;
         private const double factoryBasePrice = 130000;
         private int factoryBonus = 1;
-        private int factoryBonusCount = 0;
-
+        private int factoryBonusCounter = -1;
+        private double factoryBonusPrice = 0;
 
         private int bankCounter = 0;
         private double bankPrice = 1400000;
         private const double bankBasePrice = 1400000;
         private int bankBonus = 1;
-        private int bankBonusCount = 0;
-
+        private int bankBonusCounter = -1;
+        private double bankBonusPrice = 0;
 
         private int templeCounter = 0;
         private double templePrice = 20000000;
         private const double templeBasePrice = 20000000;
         private int templeBonus = 1;
-        private int templeBonusCount = 0;
-
+        private int templeBonusCounter = -1;
+        private double templeBonusPrice = 0;
 
         private readonly DispatcherTimer PassiveIncomeTimer = new DispatcherTimer();
 
@@ -90,24 +90,25 @@ namespace CookieClicker
         private void PassiveIncomeTimer_Tick(object sender, EventArgs e)
         {
             AddAllPassiveIncome();
+            UpdateAllPrices();
             UpdateCookieDisplay();
             ButtonEnabler();
             ButtonVisibilityEnabler();
         }
-        public void AddPassiveIncome(int counter, double ammount)
+        public void AddPassiveIncome(int counter, double ammount, int bonus)
         {
-            cookieCounter += counter * ammount;
-            cookieTotalCounter += counter * ammount;
+            cookieCounter += counter * ammount * bonus;
+            cookieTotalCounter += counter * ammount * bonus;
         }
         public void AddAllPassiveIncome()
         {
-            AddPassiveIncome(pointerCounter, 0.001);
-            AddPassiveIncome(grannyCounter, 0.01);
-            AddPassiveIncome(farmCounter, 0.08);
-            AddPassiveIncome(mineCounter, 0.47);
-            AddPassiveIncome(factoryCounter, 2.60);
-            AddPassiveIncome(bankCounter, 14);
-            AddPassiveIncome(templeCounter, 78);
+            AddPassiveIncome(pointerCounter, 0.001, pointerBonus);
+            AddPassiveIncome(grannyCounter, 0.01, grannyBonus);
+            AddPassiveIncome(farmCounter, 0.08, farmBonus);
+            AddPassiveIncome(mineCounter, 0.47, mineBonus);
+            AddPassiveIncome(factoryCounter, 2.60, factoryBonus);
+            AddPassiveIncome(bankCounter, 14, bankBonus);
+            AddPassiveIncome(templeCounter, 78, templeBonus);
         }
 
         public void NumberFormat()
@@ -217,6 +218,14 @@ namespace CookieClicker
             LblBankBonus.Content = $"{bankBonus}X ➔ {bankBonus * 2}X";
             LblTempleBonus.Content = $"{templeBonus}X ➔ {templeBonus * 2}X";
 
+            LblPointerBonusPrice.Content = pointerBonusPrice;
+            LblGrannyBonusPrice.Content = grannyBonusPrice;
+            LblFarmBonusPrice.Content = farmBonusPrice;
+            LblMineBonusPrice.Content = mineBonusPrice;
+            LblFactoryBonusPrice.Content = factoryBonusPrice;
+            LblBankBonusPrice.Content = bankBonusPrice;
+            LblTempleBonusPrice.Content = templeBonusPrice;
+
             LblPassiveIncomePerSecond.Content =
                 $"+{(pointerCounter * 0.1 * pointerBonus) + (grannyCounter * 1 * grannyBonus) + (farmCounter * 8 * farmBonus) + (mineCounter * 47 * mineBonus) + (factoryCounter * 260 * factoryBonus) + (bankCounter * 1400 * bankBonus) + (templeCounter * 7800 * templeBonus)}/s";
         }
@@ -230,7 +239,16 @@ namespace CookieClicker
             BtnFactory.IsEnabled = cookieCounter >= factoryPrice;
             BtnBank.IsEnabled = cookieCounter >= bankPrice;
             BtnTemple.IsEnabled = cookieCounter >= templePrice;
+
+            BtnBonusPointer.IsEnabled = cookieCounter >= pointerBonusPrice && pointerCounter >= 1;
+            BtnBonusGranny.IsEnabled = cookieCounter >= grannyBonusPrice && grannyCounter >= 1;
+            BtnBonusFarm.IsEnabled = cookieCounter >= farmBonusPrice && farmCounter >= 1;
+            BtnBonusMine.IsEnabled = cookieCounter >= mineBonusPrice && mineCounter >= 1;
+            BtnBonusFactory.IsEnabled = cookieCounter >= factoryBonusPrice && factoryCounter >= 1;
+            BtnBonusBank.IsEnabled = cookieCounter >= bankBonusPrice && bankCounter >= 1;
+            BtnBonusTemple.IsEnabled = cookieCounter >= templeBonusPrice && templeCounter >= 1;
         }
+
         public void ButtonVisibilityEnabler()
         {
             BtnPointer.Visibility = cookieTotalCounter >= pointerBasePrice ? Visibility.Visible : Visibility.Hidden;
@@ -243,14 +261,13 @@ namespace CookieClicker
 
             TabBonus.Visibility = BtnPointer.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
 
-            BtnPointerBonus.Visibility = BtnPointer.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
-            BtnGrannyBonus.Visibility = BtnGranny.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
-            BtnFarmBonus.Visibility = BtnFarm.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
-            BtnMineBonus.Visibility = BtnMine.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
-            BtnFactoryBonus.Visibility = BtnFactory.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
-            BtnBankBonus.Visibility = BtnBank.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
-            BtnTempleBonus.Visibility = BtnTemple.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
-
+            BtnBonusPointer.Visibility = BtnPointer.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
+            BtnBonusGranny.Visibility = BtnGranny.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
+            BtnBonusFarm.Visibility = BtnFarm.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
+            BtnBonusMine.Visibility = BtnMine.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
+            BtnBonusFactory.Visibility = BtnFactory.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
+            BtnBonusBank.Visibility = BtnBank.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
+            BtnBonusTemple.Visibility = BtnTemple.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
         }
         public void ClickAnimation()
         {
@@ -267,6 +284,7 @@ namespace CookieClicker
 
             ImgCookie.BeginAnimation(Image.MarginProperty, clickAnimation);
         }
+
         private void ClickAnimation_Completed(object sender, EventArgs e)
         {
             // Animatie complete => Originele cookie image
@@ -281,7 +299,17 @@ namespace CookieClicker
                 return Math.Round(baseprice * Math.Pow(1.15, counter));
             }
             return baseprice;
-
+        }
+        public double UpdateBonusPrice(double baseprice, int counter)
+        {
+            if(counter < 0)
+            {
+                return baseprice * 100;
+            }
+            else
+            {
+                return baseprice * 100 * (5 * Math.Pow(10,counter));
+            }
         }
         public void UpdateAllPrices()
         {
@@ -293,7 +321,15 @@ namespace CookieClicker
             bankPrice = UpdatePrice(bankBasePrice, bankCounter);
             templePrice = UpdatePrice(templeBasePrice, templeCounter);
 
+            pointerBonusPrice = UpdateBonusPrice(pointerBasePrice, pointerBonusCounter);
+            grannyBonusPrice = UpdateBonusPrice(grannyBasePrice, grannyBonusCounter);
+            farmBonusPrice = UpdateBonusPrice(farmBasePrice, farmBonusCounter);
+            mineBonusPrice = UpdateBonusPrice(mineBasePrice, mineBonusCounter);
+            factoryBonusPrice = UpdateBonusPrice(factoryBasePrice, factoryBonusCounter);
+            bankBonusPrice = UpdateBonusPrice(bankBasePrice, bankBonusCounter);
+            templeBonusPrice = UpdateBonusPrice(templeBasePrice, templeBonusCounter);
         }
+
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -345,6 +381,7 @@ namespace CookieClicker
             UpdateCookieDisplay();
             ButtonEnabler();
         }
+
         private void LblBakeryName_MouseDown(object sender, MouseButtonEventArgs e)
         {
             string name = "";
@@ -374,7 +411,56 @@ namespace CookieClicker
 
         private void BtnBonusBuy_Click(object sender, RoutedEventArgs e)
         {
-
+            Button button = (Button)sender;
+            string buttonContent = button.Name.Replace("BtnBonus", "");
+            switch (buttonContent)
+            {
+                case "Pointer":
+                    cookieCounter -= pointerBonusPrice;
+                    pointerBonusCounter++;
+                    pointerBonus *= 2;
+                    BtnPointer.ToolTip = $"{0.1 * pointerBonus} Cookies per second";
+                    break;
+                case "Granny":
+                    cookieCounter -= grannyBonusPrice;
+                    grannyBonusCounter++;
+                    grannyBonus *= 2;
+                    BtnGranny.ToolTip = $"{1 * grannyBonus} Cookies per second";
+                    break;
+                case "Farm":
+                    cookieCounter -= farmBonusPrice;
+                    farmBonusCounter++;
+                    farmBonus *= 2;
+                    BtnFarm.ToolTip = $"{8 * farmBonus} Cookies per second";
+                    break;
+                case "Mine":
+                    cookieCounter -= mineBonusPrice;
+                    mineBonusCounter++;
+                    mineBonus *= 2;
+                    BtnMine.ToolTip = $"{47 * mineBonus} Cookies per second";
+                    break;
+                case "Factory":
+                    cookieCounter -= factoryBonusPrice;
+                    factoryBonusCounter++;
+                    factoryBonus *= 2;
+                    BtnFactory.ToolTip = $"{260 * factoryBonus} Cookies per second";
+                    break;
+                case "Bank":
+                    cookieCounter -= bankBonusPrice;
+                    bankBonusCounter++;
+                    bankBonus *= 2;
+                    BtnBank.ToolTip = $"{1400 * bankBonus} Cookies per second";
+                    break;
+                case "Temple":
+                    cookieCounter -= templeBonusPrice;
+                    templeBonusCounter++;
+                    templeBonus *= 2;
+                    BtnTemple.ToolTip = $"{7800 * templeBonus} Cookies per second";
+                    break;
+            }
+            UpdateAllPrices();
+            UpdateCookieDisplay();
+            ButtonEnabler();
         }
     }
 }
