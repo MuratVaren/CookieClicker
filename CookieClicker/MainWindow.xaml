@@ -15,7 +15,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <!-- COL 0 -->
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -60,6 +60,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+
+            <Viewbox Grid.Row="0"  >
+                <Label Name="LblPassiveIncomePerSecond" />
+            </Viewbox>
 
             <Border Grid.Row="1" Grid.RowSpan="7" BorderBrush="Black" BorderThickness="1">
                 <ScrollViewer  VerticalScrollBarVisibility="Auto">
@@ -141,202 +145,365 @@
         </Grid>
 
         <!-- COL 2 -->
-        <Grid Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-
-            <Viewbox Grid.Row="0"  VerticalAlignment="Bottom" HorizontalAlignment="Left" >
-                <Label Name="LblPassiveIncomePerSecond"  FontSize="24"/>
-            </Viewbox>
-            
-            <Border Grid.Row="1" Grid.RowSpan="7" Background="LightGray">
-            </Border>
-            
-            <Button Name="BtnPointer" Grid.Row="1" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
-                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
-                <Button.ToolTip>
-                    0.1 Cookies per seconden
-                </Button.ToolTip>
-
+        <TabControl Grid.Column="2">
+            <TabItem Header="Item Store" FontSize="20">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="assets/images/Pointer.png"/>
-                    <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
-                        <StackPanel>
-                            <Label Content="Pointer" Foreground="black" FontSize="40"/>
-                            <Label Name="LblPointerPrice" Content="15" FontWeight="Bold" FontSize="24"/>
-                        </StackPanel>
-                    </Viewbox>
-                    <Viewbox  Grid.Column="2">
-                        <Label Name="LblPointerCounter" Content="0"/>
-                    </Viewbox>
-                </Grid>
-            </Button>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-            <Button Name="BtnGranny" Grid.Row="2" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnPointer" Grid.Row="0" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
-                <Button.ToolTip>
-                    1 Cookie per seconden
-                </Button.ToolTip>
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="assets/images/Granny.png"/>
-                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
-                        <StackPanel>
-                            <Label Content="Granny" Foreground="black" FontSize="40"/>
-                            <Label Name="LblGrannyPrice" Content="100" FontWeight="Bold" FontSize="24"/>
-                        </StackPanel>
-                    </Viewbox>
-                    <Viewbox Grid.Column="2">
-                        <Label Name="LblGrannyCounter" Content="0"/>
-                    </Viewbox>
-                </Grid>
-            </Button>
+                        <Button.ToolTip>
+                            0.1 Cookies per seconden
+                        </Button.ToolTip>
 
-            <Button Name="BtnFarm" Grid.Row="3" HorizontalContentAlignment="Stretch" 
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Pointer.png"/>
+                            <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Pointer" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblPointerPrice" Content="15" FontWeight="Bold" FontSize="24"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblPointerCounter" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+                    <Button Name="BtnGranny" Grid.Row="1" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
-                <Button.ToolTip>
-                    8 Cookies per seconden
-                </Button.ToolTip>
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="assets/images/Farm.png"/>
-                    <Viewbox  Grid.Column="1" HorizontalAlignment="Left">
-                        <StackPanel>
-                            <Label Content="Farm" Foreground="black" FontSize="40"/>
-                            <Label Name="LblFarmPrice" Content="1100" FontWeight="Bold" FontSize="24"/>
-                        </StackPanel>
-                    </Viewbox>
-                    <Viewbox Grid.Column="2">
-                        <Label Name="LblFarmCounter" Content="0"/>
-                    </Viewbox>
-                </Grid>
-            </Button>
+                        <Button.ToolTip>
+                            1 Cookie per seconden
+                        </Button.ToolTip>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Granny.png"/>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Granny" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblGrannyPrice" Content="100" FontWeight="Bold" FontSize="24"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox Grid.Column="2">
+                                <Label Name="LblGrannyCounter" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
 
-            <Button Name="BtnMine" Grid.Row="4" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnFarm" Grid.Row="2" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
-                <Button.ToolTip>
-                    47 Cookies per seconden
-                </Button.ToolTip>
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="assets/images/Mine.png"/>
-                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
-                        <StackPanel>
-                            <Label Content="Mine" Foreground="black" FontSize="40"/>
-                            <Label Name="LblMinePrice" Content="12000" FontWeight="Bold" FontSize="24"/>
-                        </StackPanel>
-                    </Viewbox>
-                    <Viewbox  Grid.Column="2">
-                        <Label Name="LblMineCounter" Content="0"/>
-                    </Viewbox>
-                </Grid>
-            </Button>
+                        <Button.ToolTip>
+                            8 Cookies per seconden
+                        </Button.ToolTip>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Farm.png"/>
+                            <Viewbox  Grid.Column="1" HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Farm" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblFarmPrice" Content="1100" FontWeight="Bold" FontSize="24"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox Grid.Column="2">
+                                <Label Name="LblFarmCounter" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
 
-            <Button Name="BtnFactory" Grid.Row="5" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnMine" Grid.Row="3" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
-                <Button.ToolTip>
-                    260 Cookies per seconden
-                </Button.ToolTip>
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="assets/images/Factory.png"/>
-                    <Viewbox  Grid.Column="1" HorizontalAlignment="Left">
-                        <StackPanel>
-                            <Label Content="Factory" Foreground="black" FontSize="40"/>
-                            <Label Name="LblFactoryPrice" Content="130000" FontWeight="Bold" FontSize="24"/>
-                        </StackPanel>
-                    </Viewbox>
-                    <Viewbox Grid.Column="2">
-                        <Label Name="LblFactoryCounter" Content="0"/>
-                    </Viewbox>
-                </Grid>
-            </Button>
+                        <Button.ToolTip>
+                            47 Cookies per seconden
+                        </Button.ToolTip>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Mine.png"/>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Mine" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblMinePrice" Content="12000" FontWeight="Bold" FontSize="24"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblMineCounter" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
 
-            <Button Name="BtnBank" Grid.Row="6" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnFactory" Grid.Row="4" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
-                <Button.ToolTip>
-                    1400 Cookies per seconden
-                </Button.ToolTip>
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="assets/images/Bank.png"/>
-                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
-                        <StackPanel>
-                            <Label Content="Bank" Foreground="black" FontSize="40"/> 
-                            <Label Name="LblBankPrice" Content="1400000" FontWeight="Bold" FontSize="24"/>
-                        </StackPanel>
-                    </Viewbox>
-                    <Viewbox  Grid.Column="2">
-                        <Label Name="LblBankCounter" Content="0"/>
-                    </Viewbox>
-                </Grid>
-            </Button>
+                        <Button.ToolTip>
+                            260 Cookies per seconden
+                        </Button.ToolTip>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Factory.png"/>
+                            <Viewbox  Grid.Column="1" HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Factory" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblFactoryPrice" Content="130000" FontWeight="Bold" FontSize="24"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox Grid.Column="2">
+                                <Label Name="LblFactoryCounter" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
 
-            <Button Name="BtnTemple" Grid.Row="7" HorizontalContentAlignment="Stretch" 
+                    <Button Name="BtnBank" Grid.Row="5" HorizontalContentAlignment="Stretch" 
                     VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
                     Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
-                <Button.ToolTip>
-                    7800 Cookies per seconden
-                </Button.ToolTip>
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="assets/images/Temple.png"/>
-                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
-                        <StackPanel >
-                            <Label Content="Temple" Foreground="black" FontSize="40"/>
-                            <Label Name="LblTemplePrice" Content="20000000" FontWeight="Bold" FontSize="24"/>
-                        </StackPanel>
-                    </Viewbox>
-                    <Viewbox Grid.Column="2">
-                        <Label Name="LblTempleCounter" Content="0"/>
-                    </Viewbox>
+                        <Button.ToolTip>
+                            1400 Cookies per seconden
+                        </Button.ToolTip>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Bank.png"/>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Bank" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblBankPrice" Content="1400000" FontWeight="Bold" FontSize="24"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblBankCounter" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+                    <Button Name="BtnTemple" Grid.Row="6" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
+                    Click="BtnBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                        <Button.ToolTip>
+                            7800 Cookies per seconden
+                        </Button.ToolTip>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Temple.png"/>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                                <StackPanel >
+                                    <Label Content="Temple" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblTemplePrice" Content="20000000" FontWeight="Bold" FontSize="24"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox Grid.Column="2">
+                                <Label Name="LblTempleCounter" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
                 </Grid>
-            </Button>
-        </Grid>
+            </TabItem>
+            <TabItem Name="TabBonus" Header="Bonus Store" FontSize="20" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="BtnPointerBonus" Grid.Row="0" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
+                    Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Pointer.png"/>
+                            <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Pointer" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblPointerBonus" FontWeight="Bold" FontSize="24" />
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblPointerBonusPrice" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+                    <Button Name="BtnGrannyBonus" Grid.Row="1" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
+                    Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Granny.png"/>
+                            <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Granny" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblGrannyBonus" Content="1X → 2X" FontWeight="Bold" FontSize="24" />
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblGrannyBonusPrice" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+                    <Button Name="BtnFarmBonus" Grid.Row="2" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
+                    Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Farm.png"/>
+                            <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Farm" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblFarmBonus" Content="1X → 2X" FontWeight="Bold" FontSize="24"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblFarmBonusPrice" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+                    <Button Name="BtnMineBonus" Grid.Row="3" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
+                    Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Mine.png"/>
+                            <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Mine" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblMineBonus" Content="1X → 2X" FontWeight="Bold" FontSize="24" />
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblMineBonusPrice" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+                    <Button Name="BtnFactoryBonus" Grid.Row="4" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
+                    Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Factory.png"/>
+                            <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Factory" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblFactoryBonus" Content="1X → 2X" FontWeight="Bold" FontSize="24" />
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblFactoryBonusPrice" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+                    <Button Name="BtnBankBonus" Grid.Row="5" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
+                    Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Bank.png"/>
+                            <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Bank" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblBankBonus" Content="1X → 2X" FontWeight="Bold" FontSize="24" />
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblBankBonusPrice" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+                    <Button Name="BtnTempleBonus" Grid.Row="6" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" Background="Transparent" Visibility="Hidden"
+                    Click="BtnBonusBuy_Click" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="assets/images/Temple.png"/>
+                            <Viewbox Grid.Column="1"  HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <Label Content="Temple" Foreground="black" FontSize="40"/>
+                                    <Label Name="LblTempleBonus" Content="1X → 2X" FontWeight="Bold" FontSize="24" />
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="2">
+                                <Label Name="LblTempleBonusPrice" Content="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+
+
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
