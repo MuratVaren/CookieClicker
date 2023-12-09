@@ -75,6 +75,8 @@ namespace CookieClicker
         private int templeBonusCounter = -1;
         private double templeBonusPrice = 0;
 
+        private double totalPassiveIncomePerSecond = 0;
+
         private readonly DispatcherTimer PassiveIncomeTimer = new DispatcherTimer();
 
         private bool passiveIncome = false;
@@ -90,7 +92,6 @@ namespace CookieClicker
         private void PassiveIncomeTimer_Tick(object sender, EventArgs e)
         {
             AddAllPassiveIncome();
-            UpdateAllPrices();
             UpdateCookieDisplay();
             ButtonEnabler();
             ButtonVisibilityEnabler();
@@ -226,8 +227,7 @@ namespace CookieClicker
             LblBankBonusPrice.Content = bankBonusPrice;
             LblTempleBonusPrice.Content = templeBonusPrice;
 
-            LblPassiveIncomePerSecond.Content =
-                $"+{(pointerCounter * 0.1 * pointerBonus) + (grannyCounter * 1 * grannyBonus) + (farmCounter * 8 * farmBonus) + (mineCounter * 47 * mineBonus) + (factoryCounter * 260 * factoryBonus) + (bankCounter * 1400 * bankBonus) + (templeCounter * 7800 * templeBonus)}/s";
+            LblPassiveIncomePerSecond.Content = $"+{totalPassiveIncomePerSecond}/s";
         }
 
         public void ButtonEnabler()
@@ -380,6 +380,10 @@ namespace CookieClicker
             UpdateAllPrices();
             UpdateCookieDisplay();
             ButtonEnabler();
+            totalPassiveIncomePerSecond =
+                (pointerCounter * 0.1 * pointerBonus) + (grannyCounter * 1 * grannyBonus) +
+                (farmCounter * 8 * farmBonus) + (mineCounter * 47 * mineBonus) + (factoryCounter * 260 * factoryBonus)
+                + (bankCounter * 1400 * bankBonus) + (templeCounter * 7800 * templeBonus);
         }
 
         private void LblBakeryName_MouseDown(object sender, MouseButtonEventArgs e)
@@ -461,6 +465,10 @@ namespace CookieClicker
             UpdateAllPrices();
             UpdateCookieDisplay();
             ButtonEnabler();
+            totalPassiveIncomePerSecond = 
+                (pointerCounter * 0.1 * pointerBonus) + (grannyCounter * 1 * grannyBonus) + 
+                (farmCounter * 8 * farmBonus) + (mineCounter * 47 * mineBonus) + (factoryCounter * 260 * factoryBonus)
+                + (bankCounter * 1400 * bankBonus) + (templeCounter * 7800 * templeBonus);
         }
     }
 }
