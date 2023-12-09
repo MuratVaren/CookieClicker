@@ -78,6 +78,9 @@ namespace CookieClicker
         private double totalPassiveIncomePerSecond = 0;
 
         private readonly DispatcherTimer PassiveIncomeTimer = new DispatcherTimer();
+        private readonly DispatcherTimer GoldenCookieTimer = new DispatcherTimer();
+        private readonly DispatcherTimer GoldenCookieActiveTimer = new DispatcherTimer();
+
 
         private bool passiveIncome = false;
 
@@ -87,6 +90,59 @@ namespace CookieClicker
             PassiveIncomeTimer.Tick += PassiveIncomeTimer_Tick;
             PassiveIncomeTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             PassiveIncomeTimer.Start();
+
+            GoldenCookieTimer.Tick += GoldenCookieTimer_Tick;
+            GoldenCookieTimer.Interval = new TimeSpan(0, 1, 0);
+            GoldenCookieTimer.Start();
+
+            GoldenCookieActiveTimer.Tick += GoldenCookieActiveTimer_Tick;
+            GoldenCookieActiveTimer.Interval = new TimeSpan(0, 0, 5);
+        }
+
+        private void GoldenCookieActiveTimer_Tick(object sender, EventArgs e)
+        {
+
+            GoldenCookieActiveTimer.Stop();
+            if (MyCanvas.Children.Count > 0)
+            {
+                MyCanvas.Children.RemoveAt(0);
+            }
+
+        }
+
+        private void GoldenCookieTimer_Tick(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int chance = random.Next(1,101);
+            if (chance <= 100 && totalPassiveIncomePerSecond > 0)
+            {
+                BitmapImage bitmapImage = new BitmapImage(new Uri("Assets/Images/Cookie_Cute.png", UriKind.RelativeOrAbsolute));
+                Image imageGoldenCookie = new Image();
+                imageGoldenCookie.Source = bitmapImage;
+                imageGoldenCookie.Width = 80;
+                imageGoldenCookie.Height = 80;
+                imageGoldenCookie.MouseDown += ImageGoldenCookie_MouseDown;
+
+                double canvasWidth = MyCanvas.ActualWidth - imageGoldenCookie.Width;
+                double canvasHeight = MyCanvas.ActualHeight - imageGoldenCookie.Height;
+
+                Canvas.SetLeft(imageGoldenCookie, random.NextDouble() * canvasWidth);
+                Canvas.SetTop(imageGoldenCookie, random.NextDouble() * canvasHeight);
+
+                MyCanvas.Children.Add(imageGoldenCookie);
+                GoldenCookieActiveTimer.Start();
+            }
+        }
+
+        private void ImageGoldenCookie_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            cookieCounter += totalPassiveIncomePerSecond * 60 * 15;
+            cookieTotalCounter += totalPassiveIncomePerSecond * 60 * 15;
+            GoldenCookieActiveTimer.Stop();
+            if (MyCanvas.Children.Count > 0)
+            {
+                MyCanvas.Children.RemoveAt(0);
+            }
         }
 
         private void PassiveIncomeTimer_Tick(object sender, EventArgs e)
