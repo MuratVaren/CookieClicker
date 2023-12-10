@@ -114,7 +114,7 @@ namespace CookieClicker
         {
             Random random = new Random();
             int chance = random.Next(1,101);
-            if (chance <= 100 && totalPassiveIncomePerSecond > 0)
+            if (chance <= 30 && totalPassiveIncomePerSecond > 0)
             {
                 BitmapImage bitmapImage = new BitmapImage(new Uri("Assets/Images/Cookie_Cute.png", UriKind.RelativeOrAbsolute));
                 Image imageGoldenCookie = new Image();
