@@ -96,18 +96,16 @@ namespace CookieClicker
             GoldenCookieTimer.Start();
 
             GoldenCookieActiveTimer.Tick += GoldenCookieActiveTimer_Tick;
-            GoldenCookieActiveTimer.Interval = new TimeSpan(0, 0, 5);
+            GoldenCookieActiveTimer.Interval = new TimeSpan(0, 0, 10);
         }
 
         private void GoldenCookieActiveTimer_Tick(object sender, EventArgs e)
         {
-
-            GoldenCookieActiveTimer.Stop();
             if (MyCanvas.Children.Count > 0)
             {
                 MyCanvas.Children.RemoveAt(0);
             }
-
+            GoldenCookieActiveTimer.Stop();
         }
 
         private void GoldenCookieTimer_Tick(object sender, EventArgs e)
