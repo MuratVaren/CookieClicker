@@ -111,7 +111,7 @@ namespace CookieClicker
             {"bankBonus","2","2 wow i remember being two but nobody knew me so they said who","incomplete"}
 
         };
-        public Dictionary<string, double> values = new Dictionary<string, double>();
+        private Dictionary<string, double> questsValuesDictionary = new Dictionary<string, double>();
 
         public MainWindow()
         {
@@ -136,9 +136,9 @@ namespace CookieClicker
                 int targetValue = int.Parse(quests[i, 1]);
                 if (quests[i, 3] != "complete")
                 {
-                    if (values.ContainsKey(counterName))
+                    if (questsValuesDictionary.ContainsKey(counterName))
                     {
-                        if (values[counterName] >= targetValue)
+                        if (questsValuesDictionary[counterName] >= targetValue)
                         {
                             MessageBox.Show(quests[i, 2],"Mission Complete!");
                             quests[i, 3] = "complete";
@@ -149,26 +149,26 @@ namespace CookieClicker
         }
         public void QuestDictionaryVullen()
         {
-            values["cookieCounter"] = cookieCounter;
-            values["cookieTotalCounter"] = cookieTotalCounter;
-            values["changedBakeryName"] = changedBakeryName ? 1 : 0;
-            values["totalPassiveIncomePerSecond"] = totalPassiveIncomePerSecond;
+            questsValuesDictionary["cookieCounter"] = cookieCounter;
+            questsValuesDictionary["cookieTotalCounter"] = cookieTotalCounter;
+            questsValuesDictionary["changedBakeryName"] = changedBakeryName ? 1 : 0;
+            questsValuesDictionary["totalPassiveIncomePerSecond"] = totalPassiveIncomePerSecond;
 
-            values["pointerCounter"] = pointerCounter;
-            values["grannyCounter"] = grannyCounter;
-            values["farmCounter"] = farmCounter;
-            values["mineCounter"] = mineCounter;
-            values["factoryCounter"] = factoryCounter;
-            values["bankCounter"] = bankCounter;
-            values["templeCounter"] = templeCounter;
+            questsValuesDictionary["pointerCounter"] = pointerCounter;
+            questsValuesDictionary["grannyCounter"] = grannyCounter;
+            questsValuesDictionary["farmCounter"] = farmCounter;
+            questsValuesDictionary["mineCounter"] = mineCounter;
+            questsValuesDictionary["factoryCounter"] = factoryCounter;
+            questsValuesDictionary["bankCounter"] = bankCounter;
+            questsValuesDictionary["templeCounter"] = templeCounter;
 
-            values["pointerBonus"] = pointerBonus;
-            values["grannyBonus"] = grannyBonus;
-            values["farmBonus"] = farmBonus;
-            values["mineBonus"] = mineBonus;
-            values["factoryBonus"] = factoryBonus;
-            values["bankBonus"] = bankBonus;
-            values["templeBonus"] = templeBonus;
+            questsValuesDictionary["pointerBonus"] = pointerBonus;
+            questsValuesDictionary["grannyBonus"] = grannyBonus;
+            questsValuesDictionary["farmBonus"] = farmBonus;
+            questsValuesDictionary["mineBonus"] = mineBonus;
+            questsValuesDictionary["factoryBonus"] = factoryBonus;
+            questsValuesDictionary["bankBonus"] = bankBonus;
+            questsValuesDictionary["templeBonus"] = templeBonus;
         }
         private void GoldenCookieActiveTimer_Tick(object sender, EventArgs e)
         {
