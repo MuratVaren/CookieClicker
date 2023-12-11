@@ -168,7 +168,7 @@ namespace CookieClicker
             AddPassiveIncome(templeCounter, 78, templeBonus);
         }
 
-        public void NumberFormat()
+        public string NumberFormat(double count)
         {
             double miljoen = 1000000;
             double miljard = 1000000000;
@@ -176,36 +176,31 @@ namespace CookieClicker
             double biljard = 1000000000000000;
             double triljoen = 1000000000000000000;
 
-            if (cookieCounter >= miljoen && cookieCounter < miljard)
+            if (count >= miljoen && count < miljard)
             {
-                LblCookieCount.Content = $"{cookieCounter / miljoen:F3} Miljoen Cookies";
-                this.Title = $"{cookieCounter / miljoen:F3} Miljoen Cookies";
+                return  $"{count / miljoen:F3} Miljoen";
             }
-            else if (cookieCounter >= miljard && cookieCounter < biljoen)
+            else if (count >= miljard && count < biljoen)
             {
-                LblCookieCount.Content = $"{cookieCounter / miljard:F3} Miljard Cookies";
-                this.Title = $"{cookieCounter / miljard:F3} Miljard Cookies";
+                return $"{count / miljard:F3} Miljard";
             }
-            else if (cookieCounter >= biljoen && cookieCounter < biljard)
+            else if (count >= biljoen && count < biljard)
             {
-                LblCookieCount.Content = $"{cookieCounter / biljoen:F3} Biljoen Cookies";
-                this.Title = $"{cookieCounter / biljoen:F3} Biljoen Cookies";
+                return $"{count / biljoen:F3} Biljoen";
             }
-            else if (cookieCounter >= biljard && cookieCounter < triljoen)
+            else if (count >= biljard && count < triljoen)
             {
-                LblCookieCount.Content = $"{cookieCounter / biljard:F3} Biljard Cookies";
-                this.Title = $"{cookieCounter / biljard:F3} Biljard Cookies";
+                return $"{count / biljard:F3} Biljard";
             }
-            else if (cookieCounter >= triljoen)
+            else if (count >= triljoen)
             {
-                LblCookieCount.Content = $"{cookieCounter / triljoen:F3} Triljoen Cookies";
-                this.Title = $"{cookieCounter / triljoen:F3} Triljoen Cookies";
+                return $"{count / triljoen:F3} Triljoen";
             }
             else
             {
-                LblCookieCount.Content = $"{Math.Floor(cookieCounter).ToString("N0").Replace('.', ' ')} Cookies";
-                this.Title = $"{Math.Floor(cookieCounter).ToString("N0").Replace('.', ' ')} Cookies";
+                return $"{count.ToString("N0").Replace('.', ' ')}";
             }
+
         }
 
         public void Animations()
@@ -249,23 +244,24 @@ namespace CookieClicker
         }
         private void UpdateCookieDisplay()
         {
-            NumberFormat();
+            this.Title = NumberFormat(Math.Floor(cookieCounter)) + " Cookies";
+            LblCookieCount.Content = NumberFormat(Math.Floor(cookieCounter)) + " Cookies";
 
-            LblPointerPrice.Content = pointerPrice;
-            LblGrannyPrice.Content = grannyPrice;
-            LblFarmPrice.Content = farmPrice;
-            LblMinePrice.Content = minePrice;
-            LblFactoryPrice.Content = factoryPrice;
-            LblBankPrice.Content = bankPrice;
-            LblTemplePrice.Content = templePrice;
+            LblPointerPrice.Content = NumberFormat(pointerPrice);
+            LblGrannyPrice.Content = NumberFormat(grannyPrice);
+            LblFarmPrice.Content = NumberFormat(farmPrice);
+            LblMinePrice.Content = NumberFormat(minePrice);
+            LblFactoryPrice.Content = NumberFormat(factoryPrice);
+            LblBankPrice.Content = NumberFormat(bankPrice);
+            LblTemplePrice.Content = NumberFormat(templePrice);
 
-            LblPointerCounter.Content = pointerCounter;
-            LblGrannyCounter.Content = grannyCounter;
-            LblFarmCounter.Content = farmCounter;
-            LblMineCounter.Content = mineCounter;
-            LblFactoryCounter.Content = factoryCounter;
-            LblBankCounter.Content = bankCounter;
-            LblTempleCounter.Content = templeCounter;
+            LblPointerCounter.Content = NumberFormat(pointerCounter);
+            LblGrannyCounter.Content = NumberFormat(grannyCounter);
+            LblFarmCounter.Content = NumberFormat(farmCounter);
+            LblMineCounter.Content = NumberFormat(mineCounter);
+            LblFactoryCounter.Content = NumberFormat(factoryCounter);
+            LblBankCounter.Content = NumberFormat(bankCounter);
+            LblTempleCounter.Content = NumberFormat(templeCounter);
 
             LblPointerBonus.Content = $"{pointerBonus}X ➔ {pointerBonus * 2}X";
             LblGrannyBonus.Content = $"{grannyBonus}X ➔ {grannyBonus * 2}X";
@@ -275,15 +271,22 @@ namespace CookieClicker
             LblBankBonus.Content = $"{bankBonus}X ➔ {bankBonus * 2}X";
             LblTempleBonus.Content = $"{templeBonus}X ➔ {templeBonus * 2}X";
 
-            LblPointerBonusPrice.Content = pointerBonusPrice;
-            LblGrannyBonusPrice.Content = grannyBonusPrice;
-            LblFarmBonusPrice.Content = farmBonusPrice;
-            LblMineBonusPrice.Content = mineBonusPrice;
-            LblFactoryBonusPrice.Content = factoryBonusPrice;
-            LblBankBonusPrice.Content = bankBonusPrice;
-            LblTempleBonusPrice.Content = templeBonusPrice;
+            LblPointerBonusPrice.Content = NumberFormat(pointerBonusPrice);
+            LblGrannyBonusPrice.Content = NumberFormat(grannyBonusPrice);
+            LblFarmBonusPrice.Content = NumberFormat(farmBonusPrice);
+            LblMineBonusPrice.Content = NumberFormat(mineBonusPrice);
+            LblFactoryBonusPrice.Content = NumberFormat(factoryBonusPrice);
+            LblBankBonusPrice.Content = NumberFormat(bankBonusPrice);
+            LblTempleBonusPrice.Content = NumberFormat(templeBonusPrice);
 
-            LblPassiveIncomePerSecond.Content = $"+{totalPassiveIncomePerSecond}/s";
+            if (totalPassiveIncomePerSecond < 1000000)
+            {
+                LblPassiveIncomePerSecond.Content = $"+{totalPassiveIncomePerSecond.ToString("N1").Replace('.', ' ')}/s";
+            }
+            else
+            {
+                LblPassiveIncomePerSecond.Content = $"+{NumberFormat(totalPassiveIncomePerSecond)}/s";
+            }
         }
 
         public void ButtonEnabler()
