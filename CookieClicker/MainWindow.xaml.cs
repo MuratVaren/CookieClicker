@@ -81,8 +81,37 @@ namespace CookieClicker
         private readonly DispatcherTimer GoldenCookieTimer = new DispatcherTimer();
         private readonly DispatcherTimer GoldenCookieActiveTimer = new DispatcherTimer();
 
+        private bool changedBakeryName = false;
 
         private bool passiveIncome = false;
+
+        private string[,] quests = new string[,]
+        {
+            {"cookieCounter","68","Yo the next achievement you're gonna get is gonna be soooo coool just wait. " +
+                "Trust me it's like watching avengers infinity war in imax theaters 7D ultra HDR 120 fps rgb LED on your 144HZ monitor, no cap bruh","incomplete"},
+            {"cookieCounter","69","Haha 69 funny, still can't get a girlfriend though. I'm kinda lonely, everyday, every night by myself in my corner. " +
+                "Crying and crying. Watching anime. Biting ice cream. Peeing my bed. just because i can. #LonerBoY","incomplete" },
+            {"cookieCounter","420","YEAAAAA BlAZEEEE ITTTTTT\nActually don't drugs are bad especially bad drugs those are bat with a t yes i did not mizpel that wat ar u un aboat?","incomplete" },
+            {"cookieCounter","1000000","You're a millionaire enjoy it because you'll never be rich :)","incomplete"},
+            {"cookieTotalCounter","10000","You made over 10000 Cookies.\nQuite the baker you are!","incomplete"},
+            {"changedBakeryName","1","Wow you changed the name of your bakery.\nCant stick to anything can you ;(","incomplete"},
+            {"totalPassiveIncomePerSecond","1000","1000 cookies per second SOOOOOO FASTTTT","incomplete" },
+            {"pointerCounter","30","30 pointers, you're on POINT!!!\nHaha get it! On 'POINT' since you bought pointers!\nsorry...","incomplete"},
+            {"grannyCounter","25","WOW 25 grannys that's a lot of christmas gifts.\n(if u are not christian pls don't be offended)","incomplete"},
+            {"farmCounter", "20","20 farms, It seems like you got a 'HERD' HA","incomplete"},
+            {"mineCounter","1","You got your first mine\nYou didn't need one because you're already a gem :0","incomplete"},
+            {"factoryCounter","20","You owning factories in real life, ha thats not gonna happen.","incomplete"},
+            {"bankCounter","5","Don't rob a bank instead thank frank (the cookie)","incomplete"},
+            {"templeCounter","3","Going to the temple, time to be gentle and relax your mental","incomplete"},
+            {"pointerBonus","64","64X pointer bonus about to join granny club","incomplete" },
+            {"grannyBonus","32","32X granny bonus, still having a endlife crisis","incomplete" },
+            {"farmBonus","16","16X farm bonus almost legal","incomplete"},
+            {"mineBonus","8","8X mine bonus elementary school kinda hard ;(","incomplete"},
+            {"factoryBonus","4","4 times 4 is 16 divide that by 4 is 4","incomplete"},
+            {"bankBonus","2","2 wow i remember being two but nobody knew me so they said who","incomplete"}
+
+        };
+        public Dictionary<string, double> values = new Dictionary<string, double>();
 
         public MainWindow()
         {
@@ -99,6 +128,48 @@ namespace CookieClicker
             GoldenCookieActiveTimer.Interval = new TimeSpan(0, 0, 10);
         }
 
+        public void QuestCompleteSystem()
+        {
+            for (int i = 0; i < quests.GetLength(0); i++)
+            {
+                string counterName = quests[i, 0];
+                int targetValue = int.Parse(quests[i, 1]);
+                if (quests[i, 3] != "complete")
+                {
+                    if (values.ContainsKey(counterName))
+                    {
+                        if (values[counterName] >= targetValue)
+                        {
+                            MessageBox.Show(quests[i, 2],"Mission Complete!");
+                            quests[i, 3] = "complete";
+                        }
+                    }
+                }
+            }
+        }
+        public void QuestDictionaryVullen()
+        {
+            values["cookieCounter"] = cookieCounter;
+            values["cookieTotalCounter"] = cookieTotalCounter;
+            values["changedBakeryName"] = changedBakeryName ? 1 : 0;
+            values["totalPassiveIncomePerSecond"] = totalPassiveIncomePerSecond;
+
+            values["pointerCounter"] = pointerCounter;
+            values["grannyCounter"] = grannyCounter;
+            values["farmCounter"] = farmCounter;
+            values["mineCounter"] = mineCounter;
+            values["factoryCounter"] = factoryCounter;
+            values["bankCounter"] = bankCounter;
+            values["templeCounter"] = templeCounter;
+
+            values["pointerBonus"] = pointerBonus;
+            values["grannyBonus"] = grannyBonus;
+            values["farmBonus"] = farmBonus;
+            values["mineBonus"] = mineBonus;
+            values["factoryBonus"] = factoryBonus;
+            values["bankBonus"] = bankBonus;
+            values["templeBonus"] = templeBonus;
+        }
         private void GoldenCookieActiveTimer_Tick(object sender, EventArgs e)
         {
             if (MyCanvas.Children.Count > 0)
@@ -149,6 +220,9 @@ namespace CookieClicker
             UpdateCookieDisplay();
             ButtonEnabler();
             ButtonVisibilityEnabler();
+            QuestDictionaryVullen();
+            QuestCompleteSystem();
+
         }
         public void AddPassiveIncome(int counter, double ammount, int bonus)
         {
@@ -451,6 +525,10 @@ namespace CookieClicker
                 name = Interaction.InputBox("Enter a new name for the bakery");
             }
             LblBakeryName.Content = name;
+            if(changedBakeryName == false)
+            {
+                changedBakeryName = true;
+            }
         }
 
         public void StackpanelVisualizeItems(string itemName)
