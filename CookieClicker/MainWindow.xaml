@@ -16,6 +16,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        
         <!-- COL 0 -->
         <Grid Grid.Column="0" >
             <Grid.RowDefinitions>
@@ -29,7 +30,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Canvas Name="MyCanvas" Grid.Row="0" Grid.RowSpan="9" Grid.Column="0" Panel.ZIndex="9000">
+            <Canvas Name="CanvasGoldenCookie" Grid.Row="0" Grid.RowSpan="9" Grid.Column="0" Panel.ZIndex="9000">
             </Canvas>
             
             <Viewbox Grid.Row="0">

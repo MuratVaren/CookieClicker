@@ -192,9 +192,9 @@ namespace CookieClicker
         }
         private void GoldenCookieActiveTimer_Tick(object sender, EventArgs e)
         {
-            if (MyCanvas.Children.Count > 0)
+            if (CanvasGoldenCookie.Children.Count > 0)
             {
-                MyCanvas.Children.RemoveAt(0);
+                CanvasGoldenCookie.Children.RemoveAt(0);
             }
             GoldenCookieActiveTimer.Stop();
         }
@@ -212,13 +212,13 @@ namespace CookieClicker
                 imageGoldenCookie.Height = 80;
                 imageGoldenCookie.MouseDown += ImageGoldenCookie_MouseDown;
 
-                double canvasWidth = MyCanvas.ActualWidth - imageGoldenCookie.Width;
-                double canvasHeight = MyCanvas.ActualHeight - imageGoldenCookie.Height;
+                double canvasWidth = CanvasGoldenCookie.ActualWidth - imageGoldenCookie.Width;
+                double canvasHeight = CanvasGoldenCookie.ActualHeight - imageGoldenCookie.Height;
 
                 Canvas.SetLeft(imageGoldenCookie, random.NextDouble() * canvasWidth);
                 Canvas.SetTop(imageGoldenCookie, random.NextDouble() * canvasHeight);
 
-                MyCanvas.Children.Add(imageGoldenCookie);
+                CanvasGoldenCookie.Children.Add(imageGoldenCookie);
                 GoldenCookieActiveTimer.Start();
             }
         }
@@ -228,9 +228,9 @@ namespace CookieClicker
             cookieCounter += totalPassiveIncomePerSecond * 60 * 15;
             cookieTotalCounter += totalPassiveIncomePerSecond * 60 * 15;
             GoldenCookieActiveTimer.Stop();
-            if (MyCanvas.Children.Count > 0)
+            if (CanvasGoldenCookie.Children.Count > 0)
             {
-                MyCanvas.Children.RemoveAt(0);
+                CanvasGoldenCookie.Children.RemoveAt(0);
             }
         }
 
