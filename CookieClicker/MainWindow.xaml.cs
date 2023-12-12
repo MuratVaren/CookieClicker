@@ -105,11 +105,10 @@ namespace CookieClicker
             {"templeCounter","3","Going to the temple, time to be gentle and relax your mental","incomplete"},
             {"pointerBonus","64","64X pointer bonus about to join granny club","incomplete" },
             {"grannyBonus","32","32X granny bonus, still having a endlife crisis","incomplete" },
-            {"farmBonus","16","16X farm bonus almost legal","incomplete"},
+            {"farmBonus","16","16X farm bonus you can almost get your driver's license","incomplete"},
             {"mineBonus","8","8X mine bonus elementary school kinda hard ;(","incomplete"},
             {"factoryBonus","4","4 times 4 is 16 divide that by 4 is 4","incomplete"},
             {"bankBonus","2","2 wow i remember being two but nobody knew me so they said who","incomplete"}
-
         };
         private Dictionary<string, double> questsValuesDictionary = new Dictionary<string, double>();
 
@@ -134,14 +133,35 @@ namespace CookieClicker
             {
                 string counterName = quests[i, 0];
                 int targetValue = int.Parse(quests[i, 1]);
-                if (quests[i, 3] != "complete")
+                string message = quests[i, 2];
+                string questStatus = quests[i, 3];
+                if (questStatus != "complete")
                 {
                     if (questsValuesDictionary.ContainsKey(counterName))
                     {
                         if (questsValuesDictionary[counterName] >= targetValue)
                         {
-                            MessageBox.Show(quests[i, 2],"Mission Complete!");
+                            MessageBox.Show(message,"Mission Complete!");
+                            if(TabQuest.Visibility == Visibility.Collapsed)
+                            {
+                                TabQuest.Visibility = Visibility.Visible;
+                            }
                             quests[i, 3] = "complete";
+                            ListBoxItem listBoxItem = new ListBoxItem();
+                            TextBlock textBlock = new TextBlock();
+                            textBlock.TextWrapping = TextWrapping.Wrap;
+                            if(counterName == "changedBakeryName")
+                            {
+                                textBlock.Text = $"Quest:\n{counterName} = {"true"}\n" +
+                                    $"Quest Message:\n{message}";
+                            }
+                            else
+                            {
+                                textBlock.Text = $"Quest:\n{counterName} = {targetValue}\n" +
+                                    $"Quest Message:\n{message}";
+                            }
+                            listBoxItem.Content = textBlock;
+                            LstboxQuests.Items.Add(listBoxItem);
                         }
                     }
                 }
@@ -382,6 +402,7 @@ namespace CookieClicker
 
         public void ButtonVisibilityEnabler()
         {
+
             BtnPointer.Visibility = cookieTotalCounter >= pointerBasePrice ? Visibility.Visible : Visibility.Hidden;
             BtnGranny.Visibility = cookieTotalCounter >= grannyBasePrice ? Visibility.Visible : Visibility.Hidden;
             BtnFarm.Visibility = cookieTotalCounter >= farmBasePrice ? Visibility.Visible : Visibility.Hidden;
@@ -390,7 +411,7 @@ namespace CookieClicker
             BtnBank.Visibility = cookieTotalCounter >= bankBasePrice ? Visibility.Visible : Visibility.Hidden;
             BtnTemple.Visibility = cookieTotalCounter >= templeBasePrice ? Visibility.Visible : Visibility.Hidden;
 
-            TabBonus.Visibility = BtnPointer.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
+            TabBonus.Visibility = BtnPointer.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Collapsed;
 
             BtnBonusPointer.Visibility = BtnPointer.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
             BtnBonusGranny.Visibility = BtnGranny.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;

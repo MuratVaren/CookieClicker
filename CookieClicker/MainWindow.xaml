@@ -337,7 +337,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem Name="TabBonus" Header="Bonus Store" FontSize="20" >
+            <TabItem Name="TabBonus" Header="Bonus Store" FontSize="20" Visibility="Collapsed">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -502,9 +502,10 @@
                             </Viewbox>
                         </Grid>
                     </Button>
-
-
                 </Grid>
+            </TabItem>
+            <TabItem Name="TabQuest" Header="Quests" FontSize="20" Visibility="Collapsed">
+                <ListBox Name="LstboxQuests" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
             </TabItem>
         </TabControl>
     </Grid>
