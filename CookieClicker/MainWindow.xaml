@@ -16,7 +16,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        
+        <Canvas Name="CanvasFallingCookies"  Grid.Column="0" Grid.ColumnSpan="2" Panel.ZIndex="0">
+
+        </Canvas>
+
         <!-- COL 0 -->
         <Grid Grid.Column="0" >
             <Grid.RowDefinitions>

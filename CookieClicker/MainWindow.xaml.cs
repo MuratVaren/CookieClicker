@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -112,6 +113,8 @@ namespace CookieClicker
         };
         private Dictionary<string, double> questsValuesDictionary = new Dictionary<string, double>();
 
+        private double  fallingCookiesGenerated = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -205,11 +208,11 @@ namespace CookieClicker
             int chance = random.Next(1,101);
             if (chance <= 30 && totalPassiveIncomePerSecond > 0)
             {
-                BitmapImage bitmapImage = new BitmapImage(new Uri("Assets/Images/Cookie_Cute.png", UriKind.RelativeOrAbsolute));
+                BitmapImage bitmapImage = new BitmapImage(new Uri("Assets/Images/GoldenCookie.png", UriKind.RelativeOrAbsolute));
                 Image imageGoldenCookie = new Image();
                 imageGoldenCookie.Source = bitmapImage;
-                imageGoldenCookie.Width = 80;
-                imageGoldenCookie.Height = 80;
+                imageGoldenCookie.Width = random.Next(80,130);
+                imageGoldenCookie.Height = imageGoldenCookie.Width;
                 imageGoldenCookie.MouseDown += ImageGoldenCookie_MouseDown;
 
                 double canvasWidth = CanvasGoldenCookie.ActualWidth - imageGoldenCookie.Width;
@@ -221,6 +224,54 @@ namespace CookieClicker
                 CanvasGoldenCookie.Children.Add(imageGoldenCookie);
                 GoldenCookieActiveTimer.Start();
             }
+        }
+
+        public void FallingCookies()
+        {
+            Random random = new Random();
+            BitmapImage bitmapImage = new BitmapImage(new Uri("Assets/Images/Cookie_Cute.png", UriKind.RelativeOrAbsolute));
+            Image imageGoldenCookie = new Image();
+            imageGoldenCookie.Source = bitmapImage;
+            imageGoldenCookie.Width = random.Next(20,70);
+            imageGoldenCookie.Height = imageGoldenCookie.Width;
+
+            double canvasWidth = CanvasFallingCookies.ActualWidth - imageGoldenCookie.Width;
+            double canvasHeight = CanvasFallingCookies.ActualHeight - imageGoldenCookie.Height;
+            Canvas.SetLeft(imageGoldenCookie, random.NextDouble() * canvasWidth);
+            Canvas.SetTop(imageGoldenCookie, random.NextDouble() * canvasHeight * 0.4);
+            DoubleAnimation fallingCookieAnimation = new DoubleAnimation()
+            {
+                From = 0,
+                To = CanvasFallingCookies.ActualHeight - imageGoldenCookie.Height,
+                Duration = TimeSpan.FromSeconds(5),
+                FillBehavior = FillBehavior.Stop,
+            };
+            fallingCookieAnimation.Completed += FallingCookieAnimation_Completed;
+            if (CanvasFallingCookies.Children.Count <= 50)
+            {
+                CanvasFallingCookies.Children.Add(imageGoldenCookie);
+            }
+            imageGoldenCookie.RenderTransform = new TranslateTransform();
+            imageGoldenCookie.RenderTransform.BeginAnimation(TranslateTransform.YProperty, fallingCookieAnimation);
+        }
+
+        private void FallingCookieAnimation_Completed(object sender, EventArgs e)
+        {
+            if(CanvasFallingCookies.Children.Count > 0)
+            {
+                CanvasFallingCookies.Children.RemoveAt(0);
+            }
+        }
+        public void FallingCookiePerPassiveIncome()
+        {
+            int passiveIncome = (int)fallingCookiesGenerated;
+
+            for (int i = 0; i < passiveIncome; i++)
+            {
+                FallingCookies();
+                fallingCookiesGenerated--;
+            }
+
         }
 
         private void ImageGoldenCookie_MouseDown(object sender, MouseButtonEventArgs e)
@@ -242,12 +293,14 @@ namespace CookieClicker
             ButtonVisibilityEnabler();
             QuestDictionaryVullen();
             QuestCompleteSystem();
-
+            FallingCookiePerPassiveIncome();
         }
         public void AddPassiveIncome(int counter, double ammount, int bonus)
         {
             cookieCounter += counter * ammount * bonus;
             cookieTotalCounter += counter * ammount * bonus;
+            fallingCookiesGenerated += counter * ammount * bonus;
+
         }
         public void AddAllPassiveIncome()
         {
@@ -332,6 +385,7 @@ namespace CookieClicker
                 UpdateCookieDisplay();
                 ButtonEnabler();
                 ButtonVisibilityEnabler();
+                FallingCookies();
             }
         }
         private void UpdateCookieDisplay()

@@ -134,5 +134,8 @@
     <Resource Include="Assets\Images\Backgrounds\PointerBackground.jpg" />
     <Resource Include="Assets\Images\Backgrounds\TempleBackground.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\GoldenCookie.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
