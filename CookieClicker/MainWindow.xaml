@@ -77,7 +77,7 @@
 
                         <StackPanel Name="StackpanelPointer" Visibility="Collapsed">
                             <StackPanel.Background>
-                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/PointerBackground.jpg"/>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/PointerBackground.png"/>
                             </StackPanel.Background>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
                                 <StackPanel Name="StackpanelPointerItems" Orientation="Horizontal">

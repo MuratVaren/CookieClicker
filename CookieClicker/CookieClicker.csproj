@@ -131,11 +131,13 @@
     <Resource Include="Assets\Images\Backgrounds\FarmBackground.jpg" />
     <Resource Include="Assets\Images\Backgrounds\GrannyBackground.jpg" />
     <Resource Include="Assets\Images\Backgrounds\MineBackground.jpg" />
-    <Resource Include="Assets\Images\Backgrounds\PointerBackground.jpg" />
     <Resource Include="Assets\Images\Backgrounds\TempleBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\GoldenCookie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Backgrounds\PointerBackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
