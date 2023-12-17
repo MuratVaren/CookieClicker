@@ -114,6 +114,7 @@ namespace CookieClicker
         private Dictionary<string, double> questsValuesDictionary = new Dictionary<string, double>();
 
         private double  fallingCookiesGenerated = 0;
+        private readonly MediaPlayer tapSoundPlayer = new MediaPlayer();
 
         public MainWindow()
         {
@@ -128,7 +129,44 @@ namespace CookieClicker
 
             GoldenCookieActiveTimer.Tick += GoldenCookieActiveTimer_Tick;
             GoldenCookieActiveTimer.Interval = new TimeSpan(0, 0, 10);
+            IdleAnimation();
         }
+
+        public void IdleAnimation()
+        {
+            // new rotatie object 
+            RotateTransform rotateTransform = new RotateTransform();
+            ImgCookie.RenderTransform = rotateTransform;
+
+            // rotatie via center van afbeelding
+            ImgCookie.RenderTransformOrigin = new Point(0.5, 0.5);
+
+            // simple animatie
+            DoubleAnimation rotateAnimation = new DoubleAnimation()
+            {
+                From = 0,
+                To = 360,
+                Duration = new Duration(TimeSpan.FromSeconds(6.5)),
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+
+            // animatie spelen op de rotatie
+            rotateTransform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
+
+        }
+
+        public void RandomTapSound()
+        {
+            // geluid randomizer
+            Random random = new Random();
+            int number = random.Next(1, 3);
+            tapSoundPlayer.Open(new Uri($"Assets/Audio/tap-{number}.wav", UriKind.RelativeOrAbsolute));
+
+            // geluid stoppen als het nog aan het spelen was
+            tapSoundPlayer.Stop();
+            tapSoundPlayer.Play();
+        }
+
 
         public void QuestCompleteSystem()
         {
@@ -380,6 +418,7 @@ namespace CookieClicker
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 ClickAnimation();
+                RandomTapSound();
                 cookieCounter++;
                 cookieTotalCounter++;
                 UpdateCookieDisplay();
