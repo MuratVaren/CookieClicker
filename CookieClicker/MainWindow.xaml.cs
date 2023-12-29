@@ -115,9 +115,9 @@ namespace CookieClicker
 
         private double  fallingCookiesGenerated = 0;
         private readonly MediaPlayer tapSoundPlayer = new MediaPlayer();
-
+        
         public MainWindow()
-        {
+        {           
             InitializeComponent();
             PassiveIncomeTimer.Tick += PassiveIncomeTimer_Tick;
             PassiveIncomeTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
@@ -285,13 +285,14 @@ namespace CookieClicker
                 FillBehavior = FillBehavior.Stop,
             };
             fallingCookieAnimation.Completed += FallingCookieAnimation_Completed;
-            if (CanvasFallingCookies.Children.Count <= 50)
+            if (CanvasFallingCookies.Children.Count < 50)
             {
                 CanvasFallingCookies.Children.Add(imageGoldenCookie);
             }
             imageGoldenCookie.RenderTransform = new TranslateTransform();
             imageGoldenCookie.RenderTransform.BeginAnimation(TranslateTransform.YProperty, fallingCookieAnimation);
         }
+
 
         private void FallingCookieAnimation_Completed(object sender, EventArgs e)
         {
@@ -303,13 +304,11 @@ namespace CookieClicker
         public void FallingCookiePerPassiveIncome()
         {
             int passiveIncome = (int)fallingCookiesGenerated;
-
-            for (int i = 0; i < passiveIncome; i++)
+            for (int i = 0; i < Math.Min(passiveIncome,50); i++)
             {
                 FallingCookies();
                 fallingCookiesGenerated--;
             }
-
         }
 
         private void ImageGoldenCookie_MouseDown(object sender, MouseButtonEventArgs e)

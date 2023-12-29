@@ -108,9 +108,7 @@
     <Resource Include="Assets\Images\Pointer.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Images\Granny.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Resource Include="Assets\Images\Granny.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\Farm.png" />
@@ -148,6 +146,14 @@
     <None Include="Assets\Audio\tap-2.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Backgrounds\granny_backgroumd.png" />
+    <Resource Include="Assets\Images\Backgrounds\granny_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Backgrounds\FarmBackground.png" />
+    <Resource Include="Assets\Images\Backgrounds\MineBackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
