@@ -16,12 +16,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Canvas Name="CanvasFallingCookies"  Grid.Column="0" Grid.ColumnSpan="2" Panel.ZIndex="0">
+        <Canvas Name="CanvasFallingCookies"  Grid.Column="0" Grid.ColumnSpan="2">
 
         </Canvas>
 
         <!-- COL 0 -->
-        <Grid Grid.Column="0" >
+        <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -42,8 +42,8 @@
 
             <Viewbox  Grid.Row="1">
                 <Label Name="LblCookieCount" Content="0" HorizontalAlignment="Center" FontWeight="Bold" />
-
             </Viewbox>
+            
             <Viewbox Grid.Row="2" Grid.RowSpan="6">
                 <Image Name="ImgCookie" Source="Assets/Images/Cookie.png" MouseDown="ImgCookie_MouseDown">
                     <Image.Effect>

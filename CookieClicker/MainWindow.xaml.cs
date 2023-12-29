@@ -24,8 +24,8 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 0;
-        private double cookieTotalCounter = 0;
+        private double cookieCounter = 5000050000;
+        private double cookieTotalCounter = 5000050000;
 
         private int pointerCounter = 0;
         private double pointerPrice = 15;
@@ -77,7 +77,9 @@ namespace CookieClicker
         private double templeBonusPrice = 0;
 
         private double totalPassiveIncomePerSecond = 0;
-
+        /// <summary>
+        /// Timer dat passive income geeft
+        /// </summary>
         private readonly DispatcherTimer PassiveIncomeTimer = new DispatcherTimer();
         private readonly DispatcherTimer GoldenCookieTimer = new DispatcherTimer();
         private readonly DispatcherTimer GoldenCookieActiveTimer = new DispatcherTimer();
@@ -115,10 +117,14 @@ namespace CookieClicker
 
         private double  fallingCookiesGenerated = 0;
         private readonly MediaPlayer tapSoundPlayer = new MediaPlayer();
-        
+
+        /// <summary>
+        /// Timers, en idleAnimatie opstarten
+        /// </summary>
         public MainWindow()
         {           
             InitializeComponent();
+            
             PassiveIncomeTimer.Tick += PassiveIncomeTimer_Tick;
             PassiveIncomeTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             PassiveIncomeTimer.Start();
@@ -131,7 +137,9 @@ namespace CookieClicker
             GoldenCookieActiveTimer.Interval = new TimeSpan(0, 0, 10);
             IdleAnimation();
         }
-
+        /// <summary>
+        /// Animatie dat zorgt voor een 360 rotatie op de cookieImage.
+        /// </summary>
         public void IdleAnimation()
         {
             // new rotatie object 
@@ -154,7 +162,7 @@ namespace CookieClicker
             rotateTransform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
 
         }
-
+        
         public void RandomTapSound()
         {
             // geluid randomizer
@@ -167,7 +175,9 @@ namespace CookieClicker
             tapSoundPlayer.Play();
         }
 
-
+        /// <summary>
+        /// quests regelen via een een dictionary met de waardes en een 2d array met de quests
+        /// </summary>
         public void QuestCompleteSystem()
         {
             for (int i = 0; i < quests.GetLength(0); i++)
@@ -176,6 +186,7 @@ namespace CookieClicker
                 int targetValue = int.Parse(quests[i, 1]);
                 string message = quests[i, 2];
                 string questStatus = quests[i, 3];
+
                 if (questStatus != "complete")
                 {
                     if (questsValuesDictionary.ContainsKey(counterName))
@@ -208,13 +219,15 @@ namespace CookieClicker
                 }
             }
         }
+        /// <summary>
+        /// dictionary met keys en values vullen
+        /// </summary>
         public void QuestDictionaryVullen()
         {
             questsValuesDictionary["cookieCounter"] = cookieCounter;
             questsValuesDictionary["cookieTotalCounter"] = cookieTotalCounter;
             questsValuesDictionary["changedBakeryName"] = changedBakeryName ? 1 : 0;
             questsValuesDictionary["totalPassiveIncomePerSecond"] = totalPassiveIncomePerSecond;
-
             questsValuesDictionary["pointerCounter"] = pointerCounter;
             questsValuesDictionary["grannyCounter"] = grannyCounter;
             questsValuesDictionary["farmCounter"] = farmCounter;
@@ -222,7 +235,6 @@ namespace CookieClicker
             questsValuesDictionary["factoryCounter"] = factoryCounter;
             questsValuesDictionary["bankCounter"] = bankCounter;
             questsValuesDictionary["templeCounter"] = templeCounter;
-
             questsValuesDictionary["pointerBonus"] = pointerBonus;
             questsValuesDictionary["grannyBonus"] = grannyBonus;
             questsValuesDictionary["farmBonus"] = farmBonus;
@@ -240,6 +252,11 @@ namespace CookieClicker
             GoldenCookieActiveTimer.Stop();
         }
 
+        /// <summary>
+        /// Timer dat een 30% kans heeft om een golden cookie te tonen via een canvas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GoldenCookieTimer_Tick(object sender, EventArgs e)
         {
             Random random = new Random();
@@ -251,8 +268,11 @@ namespace CookieClicker
                 imageGoldenCookie.Source = bitmapImage;
                 imageGoldenCookie.Width = random.Next(80,130);
                 imageGoldenCookie.Height = imageGoldenCookie.Width;
+
+                // image heeft een event
                 imageGoldenCookie.MouseDown += ImageGoldenCookie_MouseDown;
 
+                // de locatie van de golden cookie is random maar past op het scherm via actual width en actual height
                 double canvasWidth = CanvasGoldenCookie.ActualWidth - imageGoldenCookie.Width;
                 double canvasHeight = CanvasGoldenCookie.ActualHeight - imageGoldenCookie.Height;
 
@@ -260,10 +280,30 @@ namespace CookieClicker
                 Canvas.SetTop(imageGoldenCookie, random.NextDouble() * canvasHeight);
 
                 CanvasGoldenCookie.Children.Add(imageGoldenCookie);
+
+                // Active timer starten
                 GoldenCookieActiveTimer.Start();
             }
         }
-
+        /// <summary>
+        /// berekent hoeveel cookies je krijgt als je op de golden cookie klikt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImageGoldenCookie_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // je krijgt 15 min waarde van passieve inkomen
+            cookieCounter += totalPassiveIncomePerSecond * 60 * 15;
+            cookieTotalCounter += totalPassiveIncomePerSecond * 60 * 15;
+            GoldenCookieActiveTimer.Stop();
+            if (CanvasGoldenCookie.Children.Count > 0)
+            {
+                CanvasGoldenCookie.Children.RemoveAt(0);
+            }
+        }
+        /// <summary>
+        /// Methode om een animatie te starten van vallende cookie
+        /// </summary>
         public void FallingCookies()
         {
             Random random = new Random();
@@ -273,10 +313,13 @@ namespace CookieClicker
             imageGoldenCookie.Width = random.Next(20,70);
             imageGoldenCookie.Height = imageGoldenCookie.Width;
 
+            // locatie van de vallende cookie is random maar past op het scherm via actual width en actual height 
             double canvasWidth = CanvasFallingCookies.ActualWidth - imageGoldenCookie.Width;
             double canvasHeight = CanvasFallingCookies.ActualHeight - imageGoldenCookie.Height;
             Canvas.SetLeft(imageGoldenCookie, random.NextDouble() * canvasWidth);
             Canvas.SetTop(imageGoldenCookie, random.NextDouble() * canvasHeight * 0.4);
+
+            // de vallende coekie is een animatie (cookies vallen naar beneden)
             DoubleAnimation fallingCookieAnimation = new DoubleAnimation()
             {
                 From = 0,
@@ -284,61 +327,78 @@ namespace CookieClicker
                 Duration = TimeSpan.FromSeconds(5),
                 FillBehavior = FillBehavior.Stop,
             };
+            // methode voor de einde van de animatie
             fallingCookieAnimation.Completed += FallingCookieAnimation_Completed;
+            
+            // enkel cookie toevoegen als er minder dan 50 cookies binnen de canvas zijn
             if (CanvasFallingCookies.Children.Count < 50)
             {
                 CanvasFallingCookies.Children.Add(imageGoldenCookie);
+
+                // dit zorgt ervoor dat vallende coekie animatie op de y-as plaats vindt
+                imageGoldenCookie.RenderTransform = new TranslateTransform();
+                imageGoldenCookie.RenderTransform.BeginAnimation(TranslateTransform.YProperty, fallingCookieAnimation);
             }
-            imageGoldenCookie.RenderTransform = new TranslateTransform();
-            imageGoldenCookie.RenderTransform.BeginAnimation(TranslateTransform.YProperty, fallingCookieAnimation);
+
         }
 
 
         private void FallingCookieAnimation_Completed(object sender, EventArgs e)
         {
+            // wanneer de animatie eindigt => verwijderen we de vallende coekie
             if(CanvasFallingCookies.Children.Count > 0)
             {
                 CanvasFallingCookies.Children.RemoveAt(0);
             }
         }
+
+        /// <summary>
+        ///  zorgt voor de vallende koekie animatie op basis van passieve opbrengst met een maximum van 50 binnen de canvas zelf
+        /// </summary>
         public void FallingCookiePerPassiveIncome()
         {
-            int passiveIncome = (int)fallingCookiesGenerated;
-            for (int i = 0; i < Math.Min(passiveIncome,50); i++)
+            // Bij een zeer hoog passief inkomen kan de zichtbaarheid van vallende cookies haperen,
+            // waarbij mogelijk minder cookies worden weergegeven dan het werkelijke aantal (bijv. 5 cookies tonen terwijl er 50 binnen de canvas zijn).
+            int passiveIncome = Math.Min((int)fallingCookiesGenerated,50);
+            for (int i = 0; i < passiveIncome; i++)
             {
                 FallingCookies();
                 fallingCookiesGenerated--;
             }
         }
 
-        private void ImageGoldenCookie_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            cookieCounter += totalPassiveIncomePerSecond * 60 * 15;
-            cookieTotalCounter += totalPassiveIncomePerSecond * 60 * 15;
-            GoldenCookieActiveTimer.Stop();
-            if (CanvasGoldenCookie.Children.Count > 0)
-            {
-                CanvasGoldenCookie.Children.RemoveAt(0);
-            }
-        }
-
+        /// <summary>
+        /// Deze timer update om de 10ms en zorgt voor de passief inkomen opbrengts maar ook alles dat ermee te maken heeft.
+        /// <para>Dus het update labels,buttons als ze enabled of visible moeten zijn, Quest systeem en vallende coekies.</para>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PassiveIncomeTimer_Tick(object sender, EventArgs e)
         {
             AddAllPassiveIncome();
-            UpdateCookieDisplay();
+            UpdateWindowTitleAndLabels();
             ButtonEnabler();
             ButtonVisibilityEnabler();
             QuestDictionaryVullen();
             QuestCompleteSystem();
             FallingCookiePerPassiveIncome();
         }
+
+        /// <summary>
+        /// Voegt passief inkomen toe op basis van het aantal tellers, de hoeveelheid per teller en de bonusfactor.
+        /// </summary>
+        /// <param name="counter">De aantal counters dat je hebt bijv: aantal pointers dat je hebt</param>
+        /// <param name="ammount">De aantal dat een counter geeft bijv: granny geeft 1 cookie per sec</param>
+        /// <param name="bonus">De bonusfactor dubbelt de waarde dat je krijgt, bijv 2x, 4x, of 6x</param>
         public void AddPassiveIncome(int counter, double ammount, int bonus)
         {
             cookieCounter += counter * ammount * bonus;
             cookieTotalCounter += counter * ammount * bonus;
             fallingCookiesGenerated += counter * ammount * bonus;
-
         }
+        /// <summary>
+        /// maakt gebruik van de addPassiveIncome methode per item dat we hebben
+        /// </summary>
         public void AddAllPassiveIncome()
         {
             AddPassiveIncome(pointerCounter, 0.001, pointerBonus);
@@ -350,6 +410,13 @@ namespace CookieClicker
             AddPassiveIncome(templeCounter, 78, templeBonus);
         }
 
+        /// <summary>
+        /// Geeft de waardes een opgemaakt formaat op basis van hoeveel je hebt.
+        /// <para>Bijvoorbeeld, 1000 wordt weergegeven als 1 000.</para>
+        /// <para>Grotere getallen, zoals 1245000, worden weergegeven als 1,245 miljoen.</para>
+        /// </summary>
+        /// <param name="count">Het getal dat opgemaakt wordt</param>
+        /// <returns>opgemaakte string</returns>
         public string NumberFormat(double count)
         {
             double miljoen = 1000000;
@@ -385,48 +452,67 @@ namespace CookieClicker
 
         }
 
-        public void Animations()
+        /// <summary>
+        /// een animatie dat de label vergroot en de foreground kleuren verandert
+        /// </summary>
+        public void LabelPassiveIncomeAnimations()
         {
+            // animatie dat kleuren verandert door gebruik te maken van keyframes 
             ColorAnimationUsingKeyFrames colorAnimation = new ColorAnimationUsingKeyFrames()
             {
-                AutoReverse = true,
-                RepeatBehavior = RepeatBehavior.Forever,
+                AutoReverse = true, // automatisch omkeren
+                RepeatBehavior = RepeatBehavior.Forever, // blijft herhalen
                 Duration = TimeSpan.FromMilliseconds(6000)
             };
+            // begint op rood
             colorAnimation.KeyFrames.Add(new LinearColorKeyFrame(Colors.Red, KeyTime.FromPercent(0.0)));
+            // op het midden blauw
             colorAnimation.KeyFrames.Add(new LinearColorKeyFrame(Colors.Blue, KeyTime.FromPercent(0.5)));
+            // eindt op groen
             colorAnimation.KeyFrames.Add(new LinearColorKeyFrame(Colors.Green, KeyTime.FromPercent(1.0)));
 
+            // label op rood zetten.
             LblPassiveIncomePerSecond.Foreground = new SolidColorBrush(Colors.Red);
 
+            // animatie dat de grootte aan past van de label
             DoubleAnimation doubleAnimation = new DoubleAnimation()
             {
-                From = 24,
-                To = 40,
+                From = 24, // font size begint op 24
+                To = 40, // fontsize eindigt op 40
                 Duration = TimeSpan.FromMilliseconds(250),
-                AutoReverse = true,
-                RepeatBehavior = RepeatBehavior.Forever,
+                AutoReverse = true, // automatisch omkeren
+                RepeatBehavior = RepeatBehavior.Forever, // blijft herhalen
             };
 
+            // animaties beginnen
             LblPassiveIncomePerSecond.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
             LblPassiveIncomePerSecond.BeginAnimation(Label.FontSizeProperty, doubleAnimation);
         }
-
+        /// <summary>
+        /// Handelt de gebeurtenis af wanneer er op de cookieafbeelding wordt geklikt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            // enkel de linker klik accepteren
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 ClickAnimation();
-                RandomTapSound();
-                cookieCounter++;
+                RandomTapSound(); 
+                cookieCounter++; 
                 cookieTotalCounter++;
-                UpdateCookieDisplay();
+                UpdateWindowTitleAndLabels(); 
                 ButtonEnabler();
                 ButtonVisibilityEnabler();
                 FallingCookies();
             }
         }
-        private void UpdateCookieDisplay()
+        /// <summary>
+        /// titel en labels updaten.
+        /// <para>Voor de prijzen en counters gebruiken we de NumberFormat methode</para>
+        /// </summary>
+        private void UpdateWindowTitleAndLabels()
         {
             this.Title = NumberFormat(Math.Floor(cookieCounter)) + " Cookies";
             LblCookieCount.Content = NumberFormat(Math.Floor(cookieCounter)) + " Cookies";
@@ -465,6 +551,7 @@ namespace CookieClicker
 
             if (totalPassiveIncomePerSecond < 1000000)
             {
+                // als passieve inkomen minder dan een miljoen is toon ik ook de komma getal
                 LblPassiveIncomePerSecond.Content = $"+{totalPassiveIncomePerSecond.ToString("N1").Replace('.', ' ')}/s";
             }
             else
@@ -472,9 +559,12 @@ namespace CookieClicker
                 LblPassiveIncomePerSecond.Content = $"+{NumberFormat(totalPassiveIncomePerSecond)}/s";
             }
         }
-
+        /// <summary>
+        /// Buttons enablen als je genoeg cookies hebt
+        /// </summary>
         public void ButtonEnabler()
         {
+            // Basisgebouwen knoppen worden geactiveerd als je voldoende cookies hebt om de prijs te betalen
             BtnPointer.IsEnabled = cookieCounter >= pointerPrice;
             BtnGranny.IsEnabled = cookieCounter >= grannyPrice;
             BtnFarm.IsEnabled = cookieCounter >= farmPrice;
@@ -483,6 +573,7 @@ namespace CookieClicker
             BtnBank.IsEnabled = cookieCounter >= bankPrice;
             BtnTemple.IsEnabled = cookieCounter >= templePrice;
 
+            // Upgrade knoppen worden geactiveerd als je voldoende cookies hebt voor de prijs en minstens 1 exemplaar van het item bezit
             BtnBonusPointer.IsEnabled = cookieCounter >= pointerBonusPrice && pointerCounter >= 1;
             BtnBonusGranny.IsEnabled = cookieCounter >= grannyBonusPrice && grannyCounter >= 1;
             BtnBonusFarm.IsEnabled = cookieCounter >= farmBonusPrice && farmCounter >= 1;
@@ -491,10 +582,12 @@ namespace CookieClicker
             BtnBonusBank.IsEnabled = cookieCounter >= bankBonusPrice && bankCounter >= 1;
             BtnBonusTemple.IsEnabled = cookieCounter >= templeBonusPrice && templeCounter >= 1;
         }
-
+        /// <summary>
+        /// Beheert de zichtbaarheid van verschillende knoppen op basis van de totale cookie-teller en basisprijzen van gebouwen.
+        /// </summary>
         public void ButtonVisibilityEnabler()
         {
-
+            // items zichtbaarheid 
             BtnPointer.Visibility = cookieTotalCounter >= pointerBasePrice ? Visibility.Visible : Visibility.Hidden;
             BtnGranny.Visibility = cookieTotalCounter >= grannyBasePrice ? Visibility.Visible : Visibility.Hidden;
             BtnFarm.Visibility = cookieTotalCounter >= farmBasePrice ? Visibility.Visible : Visibility.Hidden;
@@ -503,8 +596,10 @@ namespace CookieClicker
             BtnBank.Visibility = cookieTotalCounter >= bankBasePrice ? Visibility.Visible : Visibility.Hidden;
             BtnTemple.Visibility = cookieTotalCounter >= templeBasePrice ? Visibility.Visible : Visibility.Hidden;
 
+            // tabitem voor de bonus store zichtbaar maken als je minstens de eerste item kunt zien
             TabBonus.Visibility = BtnPointer.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Collapsed;
 
+            // Bonusen tonen als je de items kunt zien
             BtnBonusPointer.Visibility = BtnPointer.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
             BtnBonusGranny.Visibility = BtnGranny.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
             BtnBonusFarm.Visibility = BtnFarm.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
@@ -513,11 +608,14 @@ namespace CookieClicker
             BtnBonusBank.Visibility = BtnBank.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
             BtnBonusTemple.Visibility = BtnTemple.Visibility == Visibility.Visible ? Visibility.Visible : Visibility.Hidden;
         }
+        /// <summary>
+        /// Cookie klik animatie is via margin manipulatie en cookie image veranderen
+        /// </summary>
         public void ClickAnimation()
-        {
-            // Cookie animatie = margin manipulatie en cookie image verandert
+        {  
             BitmapImage bitmapImage = new BitmapImage(new Uri("Assets/Images/Cookie_Cute.png", UriKind.RelativeOrAbsolute));
             ImgCookie.Source = bitmapImage;
+
             ThicknessAnimation clickAnimation = new ThicknessAnimation()
             {
                 To = new Thickness(45),
@@ -535,17 +633,31 @@ namespace CookieClicker
             BitmapImage bitmapImage = new BitmapImage(new Uri("Assets/Images/Cookie.png", UriKind.RelativeOrAbsolute));
             ImgCookie.Source = bitmapImage;
         }
-
+        /// <summary>
+        /// berekent de prijzen voor de items
+        /// </summary>
+        /// <param name="baseprice">De basisprijs van het item</param>
+        /// <param name="counter">Het aantal dat je van het item hebt</param>
+        /// <returns>De berekende prijs voor het item.</returns>
         public double UpdatePrice(double baseprice, int counter)
         {
+            // als je 1 of meer hebt
             if (counter >= 1)
             {
                 return Math.Round(baseprice * Math.Pow(1.15, counter));
             }
+            // als je nog geen hebt
             return baseprice;
         }
+        /// <summary>
+        /// berekent de prijsen voor de bonusen
+        /// </summary>
+        /// <param name="baseprice">De basisprijs van de bonus</param>
+        /// <param name="counter">het aantal bonussen</param>
+        /// <returns>De berekende prijs voor de bonus</returns>
         public double UpdateBonusPrice(double baseprice, int counter)
         {
+            // als je nog geen bonus hebt gekocht
             if(counter < 0)
             {
                 return baseprice * 100;
@@ -555,8 +667,12 @@ namespace CookieClicker
                 return baseprice * 100 * (5 * Math.Pow(10,counter));
             }
         }
+        /// <summary>
+        /// past de methodes van updatePrice en updateBonusprice toe 
+        /// </summary>
         public void UpdateAllPrices()
-        {
+        {   
+            // prijzen updaten
             pointerPrice = UpdatePrice(pointerBasePrice, pointerCounter);
             grannyPrice = UpdatePrice(grannyBasePrice, grannyCounter);
             farmPrice = UpdatePrice(farmBasePrice, farmCounter);
@@ -565,6 +681,7 @@ namespace CookieClicker
             bankPrice = UpdatePrice(bankBasePrice, bankCounter);
             templePrice = UpdatePrice(templeBasePrice, templeCounter);
 
+            // bonus prijzen updaten
             pointerBonusPrice = UpdateBonusPrice(pointerBasePrice, pointerBonusCounter);
             grannyBonusPrice = UpdateBonusPrice(grannyBasePrice, grannyBonusCounter);
             farmBonusPrice = UpdateBonusPrice(farmBasePrice, farmBonusCounter);
@@ -573,11 +690,20 @@ namespace CookieClicker
             bankBonusPrice = UpdateBonusPrice(bankBasePrice, bankBonusCounter);
             templeBonusPrice = UpdateBonusPrice(templeBasePrice, templeBonusCounter);
         }
-
+        /// <summary>
+        /// verwerkt de aankoop van items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
+            // button zoeken via sender
             Button button = (Button)sender;
             string buttonContent = button.Name.Replace("Btn", "");
+            // schakelen op basis van knopInhoud en voert acties de bijhorende acties op
+            // Cookiecounter - prijs
+            // ItemCounter +1 
+            // Stackpanel vullen met image
             switch (buttonContent)
             {
                 case "Pointer":
@@ -616,37 +742,47 @@ namespace CookieClicker
                     StackpanelVisualizeItems("Temple");
                     break;
             }
+            //  Label passive income animatie starten
             if (passiveIncome == false)
             {
                 passiveIncome = true;
-                Animations();
+                LabelPassiveIncomeAnimations();
             }
-            UpdateAllPrices();
-            UpdateCookieDisplay();
+            UpdateAllPrices(); 
+            UpdateWindowTitleAndLabels();
             ButtonEnabler();
+            // totalpassiveIncome per seconde berekenen
             totalPassiveIncomePerSecond =
                 (pointerCounter * 0.1 * pointerBonus) + (grannyCounter * 1 * grannyBonus) +
                 (farmCounter * 8 * farmBonus) + (mineCounter * 47 * mineBonus) + (factoryCounter * 260 * factoryBonus)
                 + (bankCounter * 1400 * bankBonus) + (templeCounter * 7800 * templeBonus);
         }
-
+        /// <summary>
+        /// Llb bakery klikken opent een dialoogvenster om de naam te veranderen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LblBakeryName_MouseDown(object sender, MouseButtonEventArgs e)
         {
             string name = "";
-            while (string.IsNullOrWhiteSpace(name))
+            while (string.IsNullOrWhiteSpace(name)) // mag niet leeg zijn
             {
                 name = Interaction.InputBox("Enter a new name for the bakery");
             }
             LblBakeryName.Content = name;
-            if(changedBakeryName == false)
+            if(changedBakeryName == false) // quests
             {
                 changedBakeryName = true;
             }
         }
-
+        /// <summary>
+        /// visuasileert de aantal items dat je hebt gekocht 
+        /// </summary>
+        /// <param name="itemName"></param>
         public void StackpanelVisualizeItems(string itemName)
         {
-            StackPanel stackpanel = FindName($"Stackpanel{itemName}") as StackPanel;
+            // stackpanel zoeken via de naam van de item
+            StackPanel stackpanel = FindName($"Stackpanel{itemName}") as StackPanel; 
             if (stackpanel.Visibility == Visibility.Collapsed)
             {
                 stackpanel.Visibility = Visibility.Visible;
@@ -661,12 +797,23 @@ namespace CookieClicker
             stackpanelItems.Children.Add(image);
         }
 
+        /// <summary>
+        /// verwerkt de aankoop van bonusen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBonusBuy_Click(object sender, RoutedEventArgs e)
         {
+            // button zoeken via sender
             Button button = (Button)sender;
             string buttonContent = button.Name.Replace("BtnBonus", "");
             switch (buttonContent)
             {
+                // schakelen op basis van knopInhoud en voert acties de bijhorende acties op
+                // Cookiecounter - Bonusprijs
+                // bonusCounter +1 
+                // bonus = bonus *2 
+                // Tooltip updaten
                 case "Pointer":
                     cookieCounter -= pointerBonusPrice;
                     pointerBonusCounter++;
@@ -711,8 +858,9 @@ namespace CookieClicker
                     break;
             }
             UpdateAllPrices();
-            UpdateCookieDisplay();
+            UpdateWindowTitleAndLabels();
             ButtonEnabler();
+            // totalpassiveIncome per seconde berekenen
             totalPassiveIncomePerSecond = 
                 (pointerCounter * 0.1 * pointerBonus) + (grannyCounter * 1 * grannyBonus) + 
                 (farmCounter * 8 * farmBonus) + (mineCounter * 47 * mineBonus) + (factoryCounter * 260 * factoryBonus)
