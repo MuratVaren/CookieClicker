@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieClicker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="540" Width="960">
     <Window.Background>
         <ImageBrush ImageSource="Assets/Images/Background.png"/>
     </Window.Background>
@@ -16,9 +16,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Canvas Name="CanvasFallingCookies"  Grid.Column="0" Grid.ColumnSpan="2">
-
-        </Canvas>
+        <Canvas Name="CanvasFallingCookies"  Grid.Column="0" />
 
         <!-- COL 0 -->
         <Grid Grid.Column="0">
@@ -33,8 +31,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Canvas Name="CanvasGoldenCookie" Grid.Row="0" Grid.RowSpan="9" Grid.Column="0" Panel.ZIndex="9000">
-            </Canvas>
+            <Canvas Name="CanvasGoldenCookie" Grid.Row="0" Grid.RowSpan="9" Grid.Column="0" Panel.ZIndex="1"/>
             
             <Viewbox Grid.Row="0">
                 <Label  Name="LblBakeryName" Content="PXL-Bakery" FontWeight="UltraBold" MouseDown="LblBakeryName_MouseDown"/>
