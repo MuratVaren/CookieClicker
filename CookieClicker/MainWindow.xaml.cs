@@ -86,7 +86,7 @@ namespace CookieClicker
 
         private bool passiveIncome = false;
 
-        private string[,] quests = new string[,]
+        private readonly string[,] quests = new string[,]
         {
             {"cookieCounter","68","Yo the next achievement you're gonna get is gonna be soooo coool just wait. " +
                 "Trust me it's like watching avengers infinity war in imax theaters 7D ultra HDR 120 fps rgb LED on your 144HZ monitor, no cap bruh","incomplete"},
@@ -111,7 +111,7 @@ namespace CookieClicker
             {"factoryBonus","4","4 times 4 is 16 divide that by 4 is 4","incomplete"},
             {"bankBonus","2","2 wow i remember being two but nobody knew me so they said who","incomplete"}
         };
-        private Dictionary<string, double> questsValuesDictionary = new Dictionary<string, double>();
+        private readonly Dictionary<string, double> questsValuesDictionary = new Dictionary<string, double>();
 
         private double  fallingCookiesGenerated = 0;
         private readonly MediaPlayer tapSoundPlayer = new MediaPlayer();
@@ -520,7 +520,7 @@ namespace CookieClicker
             ImgCookie.Source = bitmapImage;
             ThicknessAnimation clickAnimation = new ThicknessAnimation()
             {
-                To = new Thickness(15),
+                To = new Thickness(45),
                 Duration = TimeSpan.FromMilliseconds(110),
                 FillBehavior = FillBehavior.Stop,
             };

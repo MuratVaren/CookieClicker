@@ -71,7 +71,7 @@
                 <Label Name="LblPassiveIncomePerSecond" />
             </Viewbox>
 
-            <Border Grid.Row="1" Grid.RowSpan="7" BorderBrush="Black" BorderThickness="1">
+            <Border Grid.Row="1" Grid.RowSpan="8" BorderBrush="Black" BorderThickness="1">
                 <ScrollViewer  VerticalScrollBarVisibility="Auto">
                     <StackPanel>
 
@@ -79,7 +79,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/PointerBackground.png"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelPointerItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -89,7 +89,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/GrannyBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelGrannyItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -99,7 +99,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FarmBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelFarmItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -109,7 +109,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/MineBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelMineItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -119,7 +119,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FactoryBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelFactoryItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -129,7 +129,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="Assets/images/Backgrounds/BankBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelBankItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
@@ -139,7 +139,7 @@
                             <StackPanel.Background>
                                 <ImageBrush TileMode="Tile" ImageSource="assets/images/Backgrounds/TempleBackground.jpg"/>
                             </StackPanel.Background>
-                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="125">
+                            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelTempleItems" Orientation="Horizontal">
                                 </StackPanel>
                             </ScrollViewer>
