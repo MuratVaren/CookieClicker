@@ -126,18 +126,7 @@
     <Resource Include="Assets\Images\Temple.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Images\Backgrounds\BankBackground.jpg" />
-    <Resource Include="Assets\Images\Backgrounds\FactoryBackground.jpg" />
-    <Resource Include="Assets\Images\Backgrounds\FarmBackground.jpg" />
-    <Resource Include="Assets\Images\Backgrounds\GrannyBackground.jpg" />
-    <Resource Include="Assets\Images\Backgrounds\MineBackground.jpg" />
-    <Resource Include="Assets\Images\Backgrounds\TempleBackground.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Images\GoldenCookie.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Images\Backgrounds\PointerBackground.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Audio\tap-1.wav">
@@ -148,12 +137,23 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Images\Backgrounds\granny_backgroumd.png" />
-    <Resource Include="Assets\Images\Backgrounds\granny_background.png" />
+    <Resource Include="Assets\Images\Backgrounds\FarmBackground.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Images\Backgrounds\FarmBackground.png" />
+    <Resource Include="Assets\Images\Backgrounds\GrannyBackground.png" />
     <Resource Include="Assets\Images\Backgrounds\MineBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Backgrounds\FactoryBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Backgrounds\TempleBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Backgrounds\BankBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Backgrounds\PointerBackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

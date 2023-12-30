@@ -84,7 +84,7 @@
 
                         <StackPanel Name="StackpanelGranny" Visibility="Collapsed">
                             <StackPanel.Background>
-                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/GrannyBackground.jpg"/>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/GrannyBackground.png"/>
                             </StackPanel.Background>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelGrannyItems" Orientation="Horizontal">
@@ -94,7 +94,7 @@
 
                         <StackPanel Name="StackpanelFarm" Visibility="Collapsed">
                             <StackPanel.Background>
-                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FarmBackground.jpg"/>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FarmBackground.png"/>
                             </StackPanel.Background>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelFarmItems" Orientation="Horizontal">
@@ -104,7 +104,7 @@
 
                         <StackPanel Name="StackpanelMine" Visibility="Collapsed">
                             <StackPanel.Background>
-                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/MineBackground.jpg"/>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/MineBackground.png"/>
                             </StackPanel.Background>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelMineItems" Orientation="Horizontal">
@@ -114,7 +114,7 @@
 
                         <StackPanel Name="StackpanelFactory" Visibility="Collapsed">
                             <StackPanel.Background>
-                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FactoryBackground.jpg"/>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/Images/Backgrounds/FactoryBackground.png"/>
                             </StackPanel.Background>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelFactoryItems" Orientation="Horizontal">
@@ -124,7 +124,7 @@
 
                         <StackPanel Name="StackpanelBank" Visibility="Collapsed">
                             <StackPanel.Background>
-                                <ImageBrush TileMode="Tile" ImageSource="Assets/images/Backgrounds/BankBackground.jpg"/>
+                                <ImageBrush TileMode="Tile" ImageSource="Assets/images/Backgrounds/BankBackground.png"/>
                             </StackPanel.Background>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelBankItems" Orientation="Horizontal">
@@ -134,7 +134,7 @@
 
                         <StackPanel Name="StackpanelTemple" Visibility="Collapsed">
                             <StackPanel.Background>
-                                <ImageBrush TileMode="Tile" ImageSource="assets/images/Backgrounds/TempleBackground.jpg"/>
+                                <ImageBrush TileMode="Tile" ImageSource="assets/images/Backgrounds/TempleBackground.png"/>
                             </StackPanel.Background>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Height="150">
                                 <StackPanel Name="StackpanelTempleItems" Orientation="Horizontal">
