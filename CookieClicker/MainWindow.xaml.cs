@@ -24,8 +24,10 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
+        // pas beide aan om te testen.
         private double cookieCounter = 0;
-        private double cookieTotalCounter = 0;
+        private double cookieTotalCounter = 0; 
+
         private double totalPassiveIncomePerSecond = 0;
 
         // pointer waardes
