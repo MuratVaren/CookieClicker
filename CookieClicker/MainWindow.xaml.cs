@@ -26,7 +26,7 @@ namespace CookieClicker
     {
         // pas beide aan om te testen.
         private double cookieCounter = 0;
-        private double cookieTotalCounter = 0; 
+        private double cookieTotalCounter = 0;
 
         private double totalPassiveIncomePerSecond = 0;
 
@@ -37,6 +37,7 @@ namespace CookieClicker
         private int pointerBonus = 1;
         private int pointerBonusCounter = -1;
         private double pointerBonusPrice = 0;
+        private double pointerTotalPassiveIncome = 0;
 
         // granny waardes
         private int grannyCounter = 0;
@@ -45,6 +46,8 @@ namespace CookieClicker
         private int grannyBonus = 1;
         private int grannyBonusCounter = -1;
         private double grannyBonusPrice = 0;
+        private double grannyTotalPassiveIncome = 0;
+
 
         // farm waardes
         private int farmCounter = 0;
@@ -53,6 +56,8 @@ namespace CookieClicker
         private int farmBonus = 1;
         private int farmBonusCounter = -1;
         private double farmBonusPrice = 0;
+        private double farmTotalPassiveIncome = 0;
+
 
         // mine waardes
         private int mineCounter = 0;
@@ -61,6 +66,8 @@ namespace CookieClicker
         private int mineBonus = 1;
         private int mineBonusCounter = -1;
         private double mineBonusPrice = 0;
+        private double mineTotalPassiveIncome = 0;
+
 
         // factory waardes
         private int factoryCounter = 0;
@@ -69,6 +76,8 @@ namespace CookieClicker
         private int factoryBonus = 1;
         private int factoryBonusCounter = -1;
         private double factoryBonusPrice = 0;
+        private double factoryTotalPassiveIncome = 0;
+
 
         // bank waardes
         private int bankCounter = 0;
@@ -77,6 +86,8 @@ namespace CookieClicker
         private int bankBonus = 1;
         private int bankBonusCounter = -1;
         private double bankBonusPrice = 0;
+        private double bankTotalPassiveIncome = 0;
+
 
         // temple waardes
         private int templeCounter = 0;
@@ -85,6 +96,11 @@ namespace CookieClicker
         private int templeBonus = 1;
         private int templeBonusCounter = -1;
         private double templeBonusPrice = 0;
+        private double templeTotalPassiveIncome = 0;
+
+        private int imgCookieClickAmmount = 0;
+        private int imgGoldenCookieClickAmmount = 0;
+        private double timeSpentInGameInSeconds = 0;
 
         /// <summary>
         /// Timer dat passive income geeft
@@ -92,6 +108,7 @@ namespace CookieClicker
         private readonly DispatcherTimer PassiveIncomeTimer = new DispatcherTimer();
         private readonly DispatcherTimer GoldenCookieTimer = new DispatcherTimer();
         private readonly DispatcherTimer GoldenCookieActiveTimer = new DispatcherTimer();
+        private DispatcherTimer TimeSpentTimer = new DispatcherTimer();
 
         private bool changedBakeryName = false;
 
@@ -133,6 +150,10 @@ namespace CookieClicker
         public MainWindow()
         {           
             InitializeComponent();
+
+            TimeSpentTimer.Tick += TimeSpentTimer_Tick;
+            TimeSpentTimer.Interval = new TimeSpan(0, 0, 1);
+            TimeSpentTimer.Start();
             
             PassiveIncomeTimer.Tick += PassiveIncomeTimer_Tick;
             PassiveIncomeTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
@@ -147,6 +168,11 @@ namespace CookieClicker
             IdleAnimation();
         }
 
+        private void TimeSpentTimer_Tick(object sender, EventArgs e)
+        {
+            timeSpentInGameInSeconds++;
+        }
+
         /// <summary>
         /// Deze timer update om de 10ms en zorgt voor de passief inkomen opbrengts maar ook alles dat ermee te maken heeft.
         /// <para>Dus het update labels,buttons als ze enabled of visible moeten zijn, Quest systeem en vallende coekies.</para>
@@ -156,6 +182,7 @@ namespace CookieClicker
         private void PassiveIncomeTimer_Tick(object sender, EventArgs e)
         {
             AddAllPassiveIncome();
+            RevenuePerItem();
             UpdateWindowTitleAndLabels();
             ButtonEnabler();
             ButtonVisibilityEnabler();
@@ -208,6 +235,7 @@ namespace CookieClicker
             // je krijgt 15 min waarde van passieve inkomen
             cookieCounter += totalPassiveIncomePerSecond * 60 * 15;
             cookieTotalCounter += totalPassiveIncomePerSecond * 60 * 15;
+            imgGoldenCookieClickAmmount++;
             GoldenCookieActiveTimer.Stop();
             if (CanvasGoldenCookie.Children.Count > 0)
             {
@@ -233,6 +261,7 @@ namespace CookieClicker
                 RandomClickSound();
                 cookieCounter++;
                 cookieTotalCounter++;
+                imgCookieClickAmmount++;
                 UpdateWindowTitleAndLabels();
                 ButtonEnabler();
                 ButtonVisibilityEnabler();
@@ -343,48 +372,40 @@ namespace CookieClicker
                 // Cookiecounter - Bonusprijs
                 // bonusCounter +1 
                 // bonus = bonus *2 
-                // Tooltip updaten
                 case "Pointer":
                     cookieCounter -= pointerBonusPrice;
                     pointerBonusCounter++;
                     pointerBonus *= 2;
-                    BtnPointer.ToolTip = $"{0.1 * pointerBonus} Cookies per second";
                     break;
                 case "Granny":
                     cookieCounter -= grannyBonusPrice;
                     grannyBonusCounter++;
                     grannyBonus *= 2;
-                    BtnGranny.ToolTip = $"{1 * grannyBonus} Cookies per second";
                     break;
                 case "Farm":
                     cookieCounter -= farmBonusPrice;
                     farmBonusCounter++;
                     farmBonus *= 2;
-                    BtnFarm.ToolTip = $"{8 * farmBonus} Cookies per second";
                     break;
                 case "Mine":
                     cookieCounter -= mineBonusPrice;
                     mineBonusCounter++;
                     mineBonus *= 2;
-                    BtnMine.ToolTip = $"{47 * mineBonus} Cookies per second";
                     break;
                 case "Factory":
                     cookieCounter -= factoryBonusPrice;
                     factoryBonusCounter++;
                     factoryBonus *= 2;
-                    BtnFactory.ToolTip = $"{260 * factoryBonus} Cookies per second";
                     break;
                 case "Bank":
                     cookieCounter -= bankBonusPrice;
                     bankBonusCounter++;
                     bankBonus *= 2;
-                    BtnBank.ToolTip = $"{1400 * bankBonus} Cookies per second";
                     break;
                 case "Temple":
                     cookieCounter -= templeBonusPrice;
                     templeBonusCounter++;
                     templeBonus *= 2;
-                    BtnTemple.ToolTip = $"{7800 * templeBonus} Cookies per second";
                     break;
             }
             UpdateAllPrices();
@@ -467,6 +488,18 @@ namespace CookieClicker
         }
 
 
+        private void RevenuePerItem()
+        {
+            pointerTotalPassiveIncome += (pointerCounter * 0.001 * pointerBonus);
+            grannyTotalPassiveIncome += (grannyCounter * 0.01 * grannyBonus);
+            farmTotalPassiveIncome += (farmCounter * 0.08 * farmBonus);
+            mineTotalPassiveIncome += (mineCounter * 0.47 * mineBonus);
+            factoryTotalPassiveIncome += (factoryCounter * 2.60 * factoryBonus);
+            bankTotalPassiveIncome += (bankCounter * 14 * bankBonus);
+            templeTotalPassiveIncome += (templeCounter * 78 * templeBonus);
+        }
+
+
         /// <summary>
         /// Voegt passief inkomen toe op basis van het aantal tellers, de hoeveelheid per teller en de bonusfactor.
         /// </summary>
@@ -479,6 +512,7 @@ namespace CookieClicker
             cookieTotalCounter += counter * ammount * bonus;
             fallingCookiesGenerated += counter * ammount * bonus;
         }
+        
         /// <summary>
         /// maakt gebruik van de addPassiveIncome methode per item dat we hebben
         /// </summary>
@@ -575,6 +609,42 @@ namespace CookieClicker
             LblFactoryBonusPrice.Content = NumberFormat(factoryBonusPrice);
             LblBankBonusPrice.Content = NumberFormat(bankBonusPrice);
             LblTempleBonusPrice.Content = NumberFormat(templeBonusPrice);
+
+            BtnPointer.ToolTip = $"{0.1} Cookies per second" +
+                        $"\n{pointerCounter} Pointers produceren {0.1 * pointerCounter * pointerBonus} cookies per seconden" +
+                        $"\n{pointerBonus} bonus verhoogt de productie met {pointerBonus * 100}%" +
+                        $"\n{pointerTotalPassiveIncome.ToString("0.00")} in totaal geproduceerd";
+
+            BtnGranny.ToolTip = $"{1} Cookies per second" +
+                        $"\n{grannyCounter} Grannys produceren {1 * grannyCounter * grannyBonus} cookies per seconden" +
+                        $"\n{grannyBonus} bonus verhoogt de productie met {grannyBonus * 100}%" +
+                        $"\n{grannyTotalPassiveIncome.ToString("0.00")} in totaal geproduceerd";
+
+            BtnFarm.ToolTip = $"{8} Cookies per second" +
+                        $"\n{farmCounter} farms produceren {8 * farmCounter * farmBonus} cookies per seconden" +
+                        $"\n{farmBonus} bonus verhoogt de productie met {farmBonus * 100}%" +
+                        $"\n{farmTotalPassiveIncome.ToString("0.00")} in totaal geproduceerd";
+
+            BtnMine.ToolTip = $"{47} Cookies per second" +
+                        $"\n{mineCounter} mines produceren {47 * mineCounter * mineBonus} cookies per seconden" +
+                        $"\n{mineBonus} bonus verhoogt de productie met {mineBonus * 100}%" +
+                        $"\n{mineTotalPassiveIncome.ToString("0.00")} in totaal geproduceerd";
+
+            BtnFactory.ToolTip = $"{260} Cookies per second" +
+                        $"\n{factoryCounter} factories produceren {260 * factoryCounter * factoryBonus} cookies per seconden" +
+                        $"\n{factoryBonus} bonus verhoogt de productie met {factoryBonus * 100}%" +
+                        $"\n{factoryTotalPassiveIncome.ToString("0.00")} in totaal geproduceerd";
+
+            BtnBank.ToolTip = $"{1400} Cookies per second" +
+                        $"\n{bankCounter} banks produceren {1400 * bankCounter * bankBonus} cookies per seconden" +
+                        $"\n{bankBonus} bonus verhoogt de productie met {bankBonus * 100}%" +
+                        $"\n{bankTotalPassiveIncome.ToString("0.00")} in totaal geproduceerd";
+
+            BtnTemple.ToolTip = $"{7800} Cookies per second" +
+                        $"\n{templeCounter} temples produceren {7800 * templeCounter * templeBonus} cookies per seconden" +
+                        $"\n{templeBonus} bonus verhoogt de productie met {templeBonus * 100}%" +
+                        $"\n{templeTotalPassiveIncome.ToString("0.00")} in totaal geproduceerd";
+
 
             if (totalPassiveIncomePerSecond < 1000000)
             {
@@ -876,6 +946,21 @@ namespace CookieClicker
             // animaties beginnen
             LblPassiveIncomePerSecond.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
             LblPassiveIncomePerSecond.BeginAnimation(Label.FontSizeProperty, doubleAnimation);
+        }
+
+        private void BtnStats_Click(object sender, RoutedEventArgs e)
+        {
+            double totalSec = timeSpentInGameInSeconds;
+            double hours = (Math.Floor(totalSec / 3600));
+            double min = Math.Floor((totalSec - (hours * 3600)) / 60);
+            double sec = Math.Floor(totalSec - (hours * 3600) - min * 60);
+
+            MessageBox.Show($"Je hebt {cookieCounter.ToString("0")} cookies" +
+                $"\ntotaal cookies geproduceerd: {cookieTotalCounter.ToString("0.00")}" +
+                $"\nje hebt {hours} uur, {min} min, {sec} seconden besteed" +
+                $"\nJe hebt {imgCookieClickAmmount} keer op de cookie geklickt" + 
+                $"\nJe hebt {imgGoldenCookieClickAmmount} op de golden cookie geclickt" + 
+                $"\nJe hebt {LstboxQuests.Items.Count} quests behaald");
         }
     }
 }

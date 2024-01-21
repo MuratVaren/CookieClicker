@@ -68,7 +68,8 @@
                 <Label Name="LblPassiveIncomePerSecond" />
             </Viewbox>
 
-            <Border Grid.Row="1" Grid.RowSpan="8" BorderBrush="Black" BorderThickness="1">
+            <Button Name="BtnStats" Grid.Row="1" Content="Stats" Background="Transparent" FontSize="35" Click="BtnStats_Click"/>
+            <Border Grid.Row="2" Grid.RowSpan="7" BorderBrush="Black" BorderThickness="1">
                 <ScrollViewer  VerticalScrollBarVisibility="Auto">
                     <StackPanel>
 
